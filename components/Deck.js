@@ -20,13 +20,8 @@ const CardCount = styled.Text`
 `;
 
 class Deck extends Component { 
-  state = {
-    deckName: 'Deck',
-    cardCount: 0
-  }
-
   render() {
-    const { deckName, cardCount } = this.state;
+    const { deckName, cardCount } = this.props;
 
     return (
       <CenterView>
