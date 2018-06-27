@@ -5,7 +5,7 @@ import TextButton from './TextButton';
 import { white, black } from '../utils/colors';
 
 const CenterView = styled.View`
-  align-content: center;
+  align-items: center;
   justify-content: space-between;
 `;
 
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   strtBtn: {
     backgroundColor: black,
     color: white,
-    paddingTop: 200
+    marginTop: 200
   }
 });
 
