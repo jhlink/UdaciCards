@@ -5,8 +5,15 @@ import TextButton from './TextButton';
 import { white, black } from '../utils/colors';
 
 const CenterView = styled.View`
+  flex: 1;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+`;
+
+const QuestionPrompt = styled.Text`
+  fontSize: 32;
+  textAlign: center;
+  width: 300;
 `;
 
 const styles = StyleSheet.create({
@@ -27,6 +34,9 @@ class NewDeckView extends Component {
 
     return (
       <CenterView>
+        <QuestionPrompt>
+        What is the title of your new deck?
+        </QuestionPrompt>
         { /*  <TextBoxInput deckName={ deckName } /> */  }
         <TextButton
           style={styles.strtBtn} 
