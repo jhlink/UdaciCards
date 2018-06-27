@@ -46,10 +46,14 @@ class QuizView extends Component {
     return (
       <CenterView>
         <ButtonView>
-          <TextButton>
+          <TextButton
+            style={styles.corBtn}  
+          >
             Correct 
           </TextButton>
-          <TextButton>
+          <TextButton
+            style={styles.incorBtn}  
+          >
             Incorrect 
           </TextButton>
         </ButtonView>
