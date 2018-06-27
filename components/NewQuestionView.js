@@ -8,7 +8,7 @@ import { white, black } from '../utils/colors';
 const CenterView = styled.View`
   flex: 1;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 `;
 
 const styles = StyleSheet.create({
