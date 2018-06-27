@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
 import TextButton from './TextButton';
+import Question from './Question';
 import { white, green, red } from '../utils/colors';
 
 const CenterView = styled.View`
@@ -44,9 +45,14 @@ class QuizView extends Component {
   }
 
   render() {
+    const { prompt, answer } = this.state;
 
     return (
       <CenterView>
+        <Question 
+          promptText={ prompt } 
+          answerText={ answer }
+        />
         <ButtonView>
           <TextButton
             style={styles.corBtn}  
