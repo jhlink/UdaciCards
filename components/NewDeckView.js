@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
+import TextBoxInput from './TextBoxInput';
 import TextButton from './TextButton';
 import { white, black } from '../utils/colors';
 
@@ -20,7 +21,7 @@ const styles = StyleSheet.create({
   strtBtn: {
     backgroundColor: black,
     color: white,
-    marginTop: 200
+    marginTop: 50
   }
 });
 
@@ -37,7 +38,9 @@ class NewDeckView extends Component {
         <QuestionPrompt>
         What is the title of your new deck?
         </QuestionPrompt>
-        { /*  <TextBoxInput deckName={ deckName } /> */  }
+        <TextBoxInput
+          placeholderText="Deck Title" 
+        />
         <TextButton
           style={styles.strtBtn} 
         >
