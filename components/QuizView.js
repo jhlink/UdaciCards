@@ -18,11 +18,13 @@ const ButtonView = styled.View`
 const styles = StyleSheet.create({
   corBtn: {
     backgroundColor: green,
-    color: white
+    color: white,
+    borderWidth: 0
   },
   incorBtn: {
     backgroundColor: red,
-    color: white
+    color: white,
+    borderWidth: 0
   }
 });
 
