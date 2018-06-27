@@ -1,13 +1,13 @@
 import React, { Component }  from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import SingleDeckView from './components/SingleDeckView';
+import QuizView from './components/QuizView';
 
 export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
         <View style={{ height: 20 }}/>
-        <SingleDeckView />
+        <QuizView />
       </View>
     );
   }
