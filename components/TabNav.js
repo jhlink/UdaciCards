@@ -1,16 +1,38 @@
-import React from 'react';
-import { createBottomTabNavigator } from 'react-navigation';
+import { 
+  Platform
+} from 'react-native';
+import { createMaterialTopTabNavigator } from 'react-navigation';
 import NewDeckView from './NewDeckView';
 import DeckListView from './DeckListView';
+import { purple, white } from '../utils/colors';
+import { FontAwesome } from '@expo/vector-icons';
 
-const TabNav = createBottomTabNavigator({
+const TabNav = createMaterialTopTabNavigator({
   Decks: {
     screen: DeckListView 
   }, 
   NewDeck: {
     screen: NewDeckView
+  }}, {
+  tabBarOptions: {
+    activeTintColor: Platform.OS === 'ios' ? purple : white,
+    labelStyle: {
+      fontSize: 20,
+    },
+    style: {
+      height: 56,
+      backgroundColor: Platform.OS === 'ios' ? white : purple,
+      shadowColor: 'rgba(0, 0, 0, 0.24)',
+      shadowOffset: {
+        width: 0,
+        height: 3
+      },
+      shadowRadius: 6,
+      shadowOpacity: 1
+    }
   }
-});
+}
+);
 
 export default TabNav;
 
