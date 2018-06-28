@@ -23,7 +23,7 @@ const dummyData = [
 
   
 
-class DeckList extends Component { 
+class DeckListView extends Component { 
   state = {
     decks: []
   }
@@ -49,5 +49,5 @@ class DeckList extends Component {
   }
 }
 
-export default DeckList;
+export default DeckListView;
 
