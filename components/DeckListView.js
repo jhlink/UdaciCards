@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import styled from 'styled-components/native';
 import Deck from './Deck';
 
@@ -21,8 +21,6 @@ const dummyData = [
   }
 ];
 
-  
-
 class DeckListView extends Component { 
   state = {
     decks: []
@@ -40,7 +38,11 @@ class DeckListView extends Component {
         { decks.map((deck) => {
           return (
             <CenterView key={deck.deckName}>
-              <Deck deckName={ deck.deckName } cardCount={ deck.cardCount } />
+              <TouchableOpacity onPress={() => this.props.navigation.navigate(
+                'DeckView',
+                { stuff: 'test' })}>
+                <Deck deckName={ deck.deckName } cardCount={ deck.cardCount } />
+              </TouchableOpacity>
             </CenterView>
           );
         })}
