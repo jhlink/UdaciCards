@@ -4,11 +4,10 @@ import TabNav from './TabNav';
 const MainNavigator =  createStackNavigator({
   Decks: {
     screen: TabNav,
-    navigationOptions: {
-      title: 'Decks'
-    }
-  }
-});
+  }}, {
+  headerMode: 'none',
+}
+);
 
 export default MainNavigator;
     
