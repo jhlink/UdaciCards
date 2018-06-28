@@ -5,10 +5,15 @@ import SingleDeckView from './SingleDeckView';
 const MainNavigator =  createStackNavigator({
   Decks: {
     screen: TabNav,
+    navigationOptions: () => ({
+      header: null 
+    })
   }, DeckView: {
-    screen: SingleDeckView
+    screen: SingleDeckView,
+    navigationOptions: ({ navigation }) => ({
+      headerTitle: `${navigation.state.params.deckName}` 
+    })
   }}, {
-  headerMode: 'none',
 }
 );
 
