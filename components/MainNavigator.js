@@ -1,10 +1,9 @@
-import React from 'react';
 import { createStackNavigator } from 'react-navigation';
-import DeckListView from './DeckListView';
+import TabNav from './TabNav';
 
 const MainNavigator =  createStackNavigator({
   Decks: {
-    screen: DeckListView,
+    screen: TabNav,
     navigationOptions: {
       title: 'Decks'
     }
