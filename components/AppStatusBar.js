@@ -5,11 +5,12 @@ import {
   StyleSheet
 } from 'react-native';
 import { Constants } from 'expo';
+import { purple } from '../utils/colors';
 
-const AppStatusBar = ({ backgroundColor, ...props }) => {
+const AppStatusBar = ({ ...props }) => {
   return (
-    <View style={[ backgroundColor, styles.container ]}>
-      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
+    <View style={[ styles.color, styles.container ]}>
+      <StatusBar translucent backgroundColor={styles.color} {...props} />
     </View>
   );
 };
@@ -17,6 +18,9 @@ const AppStatusBar = ({ backgroundColor, ...props }) => {
 const styles = StyleSheet.create({
   container: {
     height: Constants.statusBarHeight
+  }, 
+  color: {
+    backgroundColor: purple
   }
 });
 
