@@ -1,13 +1,12 @@
 import React, { Component }  from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import NewQuestionView from './components/NewQuestionView';
+import MainNavigator from './components/MainNavigator';
 
 export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={{ height: 20 }}/>
-        <NewQuestionView />
+        <MainNavigator />
       </View>
     );
   }
