@@ -4,7 +4,6 @@ import styled from 'styled-components/native';
 import TextBoxInput from './TextBoxInput';
 import TextButton from './TextButton';
 import { white, black } from '../utils/colors';
-import { connect } from 'react-redux';
 
 const CenterView = styled.View`
   flex: 1;
@@ -60,5 +59,5 @@ class NewDeckView extends Component {
   }
 }
 
-export default connect()(NewDeckView);
+export default NewDeckView;
 
