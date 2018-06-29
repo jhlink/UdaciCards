@@ -5,7 +5,6 @@ import TextBoxInput from './TextBoxInput';
 import TextButton from './TextButton';
 import { white, black } from '../utils/colors';
 import { connect } from 'react-redux';
-import { NavigationActions } from 'react-navigation';
 
 const CenterView = styled.View`
   flex: 1;
