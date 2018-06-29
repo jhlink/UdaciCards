@@ -39,6 +39,13 @@ class SingleDeckView extends Component {
     this.setState(dummyData);
   }
 
+  toNewQuestionView = () => {
+    this.props.navigation.navigate(
+      'NewQuestionView',
+      { ...this.state }
+    );
+  }
+
   toQuizView = () => {
     this.props.navigation.navigate(
       'QuizView',
@@ -53,7 +60,9 @@ class SingleDeckView extends Component {
       <CenterView>
         <Deck deckName={ deckName } cardCount={ cardCount } />
         <ButtonView>
-          <TextButton>
+          <TextButton
+            onPress={this.toNewQuestionView}
+          >
             Add Card
           </TextButton>
           <TextButton
