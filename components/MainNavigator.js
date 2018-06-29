@@ -18,7 +18,7 @@ const MainNavigator =  createStackNavigator({
   }, QuizView: {
     screen: QuizView,
     navigationOptions: () => ({
-      header: null 
+      headerTitle: 'Quiz Time!' 
     })
   }, NewQuestionView: {
     screen: NewQuestionView,
