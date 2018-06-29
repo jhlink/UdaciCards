@@ -4,6 +4,7 @@ import styled from 'styled-components/native';
 import TextBoxInput from './TextBoxInput';
 import TextButton from './TextButton';
 import { white, black } from '../utils/colors';
+import { NavigationActions } from 'react-navigation';
 
 const CenterView = styled.View`
   flex: 1;
@@ -20,6 +21,12 @@ const styles = StyleSheet.create({
 });
 
 class NewQuestionView extends Component { 
+
+  toDeckView = () => {
+    const { goBack } = this.props.navigation;
+    goBack();
+  }
+
   render() {
     return (
       <CenterView>
@@ -31,6 +38,7 @@ class NewQuestionView extends Component {
         />
         <TextButton
           style={styles.strtBtn} 
+          onPress={this.toDeckView}
         >
             Submit 
         </TextButton>
