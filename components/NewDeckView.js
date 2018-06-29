@@ -4,6 +4,8 @@ import styled from 'styled-components/native';
 import TextBoxInput from './TextBoxInput';
 import TextButton from './TextButton';
 import { white, black } from '../utils/colors';
+import { connect } from 'react-redux';
+import { NavigationActions } from 'react-navigation';
 
 const CenterView = styled.View`
   flex: 1;
@@ -30,6 +32,13 @@ class NewDeckView extends Component {
     deckName: 'Deck'
   }
 
+  toSingleDeckView = () => {
+    this.props.navigation.navigate(
+      'DeckView',
+      { ...this.state }
+    );
+  }
+
   render() {
     const { deckName } = this.state;
 
@@ -42,6 +51,7 @@ class NewDeckView extends Component {
           placeholderText="Deck Title" 
         />
         <TextButton
+          onPress={this.toSingleDeckView}
           style={styles.strtBtn} 
         >
             Submit 
@@ -51,5 +61,5 @@ class NewDeckView extends Component {
   }
 }
 
-export default NewDeckView;
+export default connect()(NewDeckView);
 
