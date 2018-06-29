@@ -39,6 +39,13 @@ class SingleDeckView extends Component {
     this.setState(dummyData);
   }
 
+  toQuizView = () => {
+    this.props.navigation.navigate(
+      'QuizView',
+      { ...this.state }
+    );
+  }
+
   render() {
     const { deckName, cardCount } = this.state;
 
@@ -50,6 +57,7 @@ class SingleDeckView extends Component {
             Add Card
           </TextButton>
           <TextButton
+            onPress={this.toQuizView}
             style={styles.strtBtn} 
           >
             Start Quiz 
