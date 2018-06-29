@@ -5,7 +5,7 @@ import { StyleSheet, View } from 'react-native';
 import MainNavigator from './components/MainNavigator';
 import AppStatusBar from './components/AppStatusBar';
 import { white } from './utils/colors'; 
-import reducer from './reducers'
+import reducer from './reducers';
 
 export default class App extends Component {
   render() {
