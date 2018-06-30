@@ -2,8 +2,8 @@ import { AsyncStorage } from 'react-native';
 import { PARTIAL_DECK_KEY } from './storageKey';
 import uuidv4 from 'uuid/v4';
 
-export function getAllDecks() {
-  return AsyncStorage.getAllKeys((err, keys) => {
+export const getAllDecks = () => 
+  AsyncStorage.getAllKeys((err, keys) => {
     const deckKeys = keys.filter( (key) => key.includes( PARTIAL_DECK_KEY ) );
     return AsyncStorage.multiGet(deckKeys, (err, stores) => {
       return stores.map( (arrayOfDeckKeyAndValue) => {
@@ -16,7 +16,6 @@ export function getAllDecks() {
       });
     });
   });
-}
 
         
 
