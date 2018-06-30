@@ -4,6 +4,28 @@ import {
 import { Notifications, Permissions } from 'expo';
 
 const NOTIFICATION_KEY = 'UdaciCard:notifications';
+const QUIZ_COUNT_KEY = 'UdaciCard:quizcount';
+
+export function setQuizCount(quizCount)  {
+  AsyncStorage.flushGetRequests();
+  AsyncStorage.setItem(QUIZ_COUNT_KEY, JSON.stringify(quizCount));
+}
+
+export function clearQuizCount() {
+  AsyncStorage.removeItem(QUIZ_COUNT_KEY);
+}
+
+export function checkQuizCount()  {
+  AsyncStorage.getItem(QUIZ_COUNT_KEY)
+    .then( JSON.parse )
+    .then((data) => {
+      if (data === 0 || data === null) {
+        setLocalNotification();
+      } else {
+        clearLocalNotification(); 
+      }
+    });
+}
 
 export function clearLocalNotification() {
   AsyncStorage.removeItem(NOTIFICATION_KEY)
@@ -13,7 +35,7 @@ export function clearLocalNotification() {
 function createNotification() {
   return {
     title: '😭😭😭 Pop Quiz!! 😳😳😳',
-    body: 'Quiz Time! Test your ice cream knowledge!',
+    body: 'Quiz Time! Test thy knowledge of frozen dairy!',
     ios: {
       sound: true,
     },
@@ -26,7 +48,7 @@ function createNotification() {
   };
 }
 
-export function setLocalNotification() {
+function setLocalNotification() {
   AsyncStorage.getItem(NOTIFICATION_KEY)
     .then( JSON.parse )
     .then((data) => {
@@ -36,15 +58,13 @@ export function setLocalNotification() {
             if (status === 'granted') {
               Notifications.cancelAllScheduledNotificationsAsync();
 
-              let tomorrow = new Date();
-              tomorrow.setDate(tomorrow.getDate() + 1);
-              tomorrow.setHours(20);
-              tomorrow.setMinutes(0);
+              let today = new Date();
+              today.setMinutes(today.getMinutes() + 1);
 
               Notifications.scheduleLocalNotificationAsync(
                 createNotification(),
                 {
-                  time: tomorrow,
+                  time: today,
                   repeat: 'day',
                 }
               );
