@@ -16,14 +16,14 @@ export const getAllDecks = () =>
     });
   });
 
-//  Note: DeckData is unserialized, raw, JSON object.
-export const setDeck = ( deckId, deckJSONData ) => {
+//  Note: DeckData is unserialized, raw, JSON object. `deckId` is assumed to be a string.
+export const addDeck = ( deckId, deckJSONData ) => {
   const deckAsyncStorageKey = PARTIAL_DECK_KEY + deckId;
   const serializedData = JSON.stringify( deckJSONData );
   AsyncStorage.setItem(deckAsyncStorageKey, serializedData)
     .then( (err) => {
       if (err) {
-        console.error('setDeck storage failure');
+        console.error('addDeck storage failure');
       } else {
         console.log('success');
       }
