@@ -16,7 +16,7 @@ export const getAllDecks = () =>
     });
   });
 
-//  Note: DeckData is unserialized, raw, JSON object. 
+//  Note: DeckData is unserialized, raw, JSON object.
 export const setDeck = ( deckId, deckJSONData ) => {
   const deckAsyncStorageKey = PARTIAL_DECK_KEY + deckId;
   const serializedData = JSON.stringify( deckJSONData );
@@ -31,4 +31,15 @@ export const setDeck = ( deckId, deckJSONData ) => {
 
 };
 
-
+//  Note: `deckId` is assumed to be a string.
+export const deleteDeck = ( deckId ) => {
+  const deckAsyncStorageKey = PARTIAL_DECK_KEY + deckId;
+  AsyncStorage.removeItem(deckAsyncStorageKey)
+    .then( (err) => {
+      if (err) {
+        console.error('deleteDeck storage failure');
+      } else {
+        console.log('success');
+      }
+    });
+};
