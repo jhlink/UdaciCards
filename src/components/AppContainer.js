@@ -1,23 +1,17 @@
 import React, { Component }  from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
-
-import reducer from '../reducers';
 import MainNavigator from './MainNavigator';
 import AppStatusBar from './AppStatusBar';
 import { white } from '../utils/colors'; 
 
-export default class App extends Component {
+export default class AppContainer extends Component {
   render() {
     return (
-      <Provider store={ createStore( reducer ) } >
-        <View style={styles.container}>
-          <AppStatusBar /> 
-          <MainNavigator />
-        </View>
-      </Provider>
+      <View style={styles.container}>
+        <AppStatusBar /> 
+        <MainNavigator />
+      </View>
     );
   }
 }
