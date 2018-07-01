@@ -5,10 +5,7 @@ import TextButton from './TextButton';
 import Question from './Question';
 import { white, green, red } from '../utils/colors';
 
-
-const QuizView = () => {  
-  const { prompt, answer } = this.state;
-
+const QuizView = ({ prompt, answer }) => {  
   return (
     <CenterView>
       <Question 
