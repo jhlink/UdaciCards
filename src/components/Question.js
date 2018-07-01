@@ -3,16 +3,6 @@ import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 import styled from 'styled-components';
 import { red } from '../utils/colors';
 
-const CenterView = styled.View`
-  align-items: center;
-  justify-content: space-between;
-`;
-
-const QuestionPrompt = styled.Text`
-  fontSize: 32;
-  textAlign: center;
-`;
-
 const Question = ({ promptText, questionState, onPress, style = {} }) => {
   const buttonText = questionState ? 'Question' : 'Answer';
 
@@ -30,6 +20,16 @@ const Question = ({ promptText, questionState, onPress, style = {} }) => {
     </CenterView>
   );
 };
+
+const CenterView = styled.View`
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const QuestionPrompt = styled.Text`
+  fontSize: 32;
+  textAlign: center;
+`;
 
 const styles = StyleSheet.create({
   btn: {
