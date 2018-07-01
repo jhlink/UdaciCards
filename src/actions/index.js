@@ -12,6 +12,13 @@ const loadDecks = ( decks ) => {
   };
 };
 
+const addDeck = ( deck ) => {
+  return {
+    type: ADD_DECK,
+    deck
+  };
+};
+
 // Thunks
 export const getDecks = () => dispatch => {
   return DeckAPI.getAllDecks()
