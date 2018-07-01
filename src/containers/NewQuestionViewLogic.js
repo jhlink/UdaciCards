@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import NewQuestionView from '../components/NewQuestionView';
 
+const INIT_QUESTION = {
+  questionText: '',
+  answerText: ''
+};
+
 class NewQuestionViewLogic extends Component { 
   state = {
     questionText: '',
@@ -8,8 +13,13 @@ class NewQuestionViewLogic extends Component {
   }
 
   toDeckView = () => {
-    const { goBack } = this.props.navigation;
-    goBack();
+    const newQuestion = {
+      id: 'test',
+      ...this.state
+    };
+
+    console.log(newQuestion);
+    //this.props.addQuestion(newQuestion);
   }
 
   handleAnswerTextChange = ( answerText ) => {
@@ -29,10 +39,12 @@ class NewQuestionViewLogic extends Component {
         answerText={ answerText }
         handleQuestionChange={ this.handleQuestionTextChange }   
         handleAnswerChange={ this.handleAnswerTextChange }
+        handleOnSubmit={ this.toDeckView }
       />
     ); 
   }
 }
+
 
 export default NewQuestionViewLogic;
 

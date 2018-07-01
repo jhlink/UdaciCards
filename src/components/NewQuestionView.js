@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const NewQuestionView = ({ questionText, answerText, handleQuestionChange, handleAnswerChange }) => {
+const NewQuestionView = ({ questionText, answerText, handleQuestionChange, handleAnswerChange, handleOnSubmit }) => {
 
   return (
     <CenterView>
@@ -36,7 +36,7 @@ const NewQuestionView = ({ questionText, answerText, handleQuestionChange, handl
       />
       <TextButton
         style={styles.strtBtn} 
-        onPress={this.toDeckView}
+        onPress={ handleOnSubmit }
       >
             Submit 
       </TextButton>
