@@ -58,8 +58,6 @@ class NewDeckView extends Component {
 function mapStateToProps ( state ) {
   const { deck } = state.deckReducer;
 
-  console.log(deck);
-
   return {
     ...deck
   };
