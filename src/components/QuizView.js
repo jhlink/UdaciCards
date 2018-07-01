@@ -5,22 +5,23 @@ import TextButton from './TextButton';
 import Question from './Question';
 import { white, green, red } from '../utils/colors';
 
-const QuizView = ({ prompt, answer }) => {  
+const QuizView = ({ promptText, answerText, handleCorrectBtn, handleIncorrectBtn }) => {  
   return (
     <CenterView>
       <Question 
-        promptText={ prompt } 
-        answerText={ answer }
+        onPress={ null }
+        promptText={ promptText } 
+        answerText={ answerText }
       />
       <ButtonView>
         <TextButton
-          style={styles.corBtn}  
-        >
+          onPress={ handleCorrectBtn }
+          style={styles.corBtn}>  
             Correct 
         </TextButton>
         <TextButton
-          style={styles.incorBtn}  
-        >
+          onPress={ handleIncorrectBtn }
+          style={styles.incorBtn}>  
             Incorrect 
         </TextButton>
       </ButtonView>

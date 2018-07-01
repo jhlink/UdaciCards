@@ -14,14 +14,27 @@ class QuizViewLogic extends Component {
     const { fetchQuestions } = this.props;
     fetchQuestions();
   }
+
+  handleCorrectAnswer = () => {
+    this.setState({ score: this.state.score + 1});
+  }
+
+  handleIncorrectAnswer = () => {
+    const newScore = (this.state.score - 1) > 0 ? this.state.score - 1 : 0 ;
+    this.setState({ score: newScore });
+  }
     
   render() {
     const { questions } = this.props;
+    const { score } = this.state;
+    console.log('score: ', score);
 
     return(
       <QuizView
         promptText={''}
         answerText={''}
+        handleCorrectBtn={ this.handleCorrectAnswer }
+        handleIncorrectBtn={ this.handleIncorrectAnswer }
       />
     );
   }
