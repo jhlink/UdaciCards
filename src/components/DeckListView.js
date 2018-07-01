@@ -33,7 +33,7 @@ class DeckListView extends Component {
         { decks !== undefined &&
           decks.map((deck) => {
             return (
-              <CenterView key={deck.deckName}>
+              <CenterView key={deck.id}>
                 <TouchableOpacity onPress={() => this.props.navigation.navigate(
                   'DeckView',
                   { deckName: deck.deckName})}>
