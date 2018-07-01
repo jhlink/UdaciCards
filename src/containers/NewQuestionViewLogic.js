@@ -18,12 +18,11 @@ class NewQuestionViewLogic extends Component {
 
   toDeckView = () => {
     const newQuestion = {
-      id: 'test',
+      id: 'qTest',
       ...this.state
     };
 
-    console.log(newQuestion);
-    //this.props.addQuestion(newQuestion);
+    this.props.addQuestion(newQuestion);
   }
 
   componentDidMount() {
@@ -34,7 +33,7 @@ class NewQuestionViewLogic extends Component {
   componentDidUpdate( ) {
     const { question, goBack } = this.props;
 
-    if (question !== undefined && question.deckAdded) {
+    if (question !== undefined && question.questionAdded) {
       this.setState = INIT_QUESTION; 
 
       goBack();
