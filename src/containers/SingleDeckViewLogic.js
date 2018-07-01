@@ -26,7 +26,7 @@ class SingleDeckViewLogic extends Component {
     const { goToScreen } = this.props;
 
     goToScreen(
-      'QuizView',
+      'QuizViewLogic',
       { ...this.state }
     );
   }
