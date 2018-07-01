@@ -20,6 +20,13 @@ const addDeck = ( deck ) => {
   };
 };
 
+const removeDeck = ( deckId ) => {
+  return {
+    type: REMOVE_DECK,
+    deckId
+  };
+};
+
 // Thunks
 export const getDecks = () => dispatch => {
   return DeckAPI.getAllDecks()
