@@ -11,17 +11,14 @@ function questionReducer (state = {}, action) {
     case GET_QUESTIONS: {
       return { 
         ...state,
-        questions 
+        questions,
       };
     }
 
     case ADD_QUESTION: {
       return { 
         ...state,
-        question: { 
-          ...question,
-          questionAdded: true
-        }
+        question,
       };
     }
 
