@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
 import Deck from './Deck';
@@ -23,59 +23,26 @@ const styles = StyleSheet.create({
   }
 });
 
-
-const dummyData = {
-  deckName: 'Italian',
-  cardCount: 30
-};
-
-class SingleDeckView extends Component { 
-  state = {
-    deckName: 'Deck',
-    cardCount: 0
-  }
-
-  componentDidMount() {
-    this.setState(dummyData);
-  }
-
-  toNewQuestionView = () => {
-    this.props.navigation.navigate(
-      'NewQuestionView',
-      { ...this.state }
-    );
-  }
-
-  toQuizView = () => {
-    this.props.navigation.navigate(
-      'QuizView',
-      { ...this.state }
-    );
-  }
-
-  render() {
-    const { deckName, cardCount } = this.state;
-
-    return (
-      <CenterView>
-        <Deck deckName={ deckName } cardCount={ cardCount } />
-        <ButtonView>
-          <TextButton
-            onPress={this.toNewQuestionView}
-          >
+const SingleDeckView = ({ deckName, cardCount }) => { 
+  return (
+    <CenterView>
+      <Deck deckName={ deckName } cardCount={ cardCount } />
+      <ButtonView>
+        <TextButton
+          onPress={this.toNewQuestionView}
+        >
             Add Card
-          </TextButton>
-          <TextButton
-            onPress={this.toQuizView}
-            style={styles.strtBtn} 
-          >
+        </TextButton>
+        <TextButton
+          onPress={this.toQuizView}
+          style={styles.strtBtn} 
+        >
             Start Quiz 
-          </TextButton>
-        </ButtonView>
-      </CenterView>
-    ); 
-  }
-}
+        </TextButton>
+      </ButtonView>
+    </CenterView>
+  ); 
+};
 
 export default SingleDeckView;
 
