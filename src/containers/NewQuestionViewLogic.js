@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import NewQuestionView from '../components/NewQuestionView';
 import { connect } from 'react-redux';
+import { createQuestion } from '../actions';
 
 const INIT_QUESTION = {
+  deckId: '',
   questionText: '',
   answerText: ''
 };
 
 class NewQuestionViewLogic extends Component { 
   state = {
+    deckId: '',
     questionText: '',
     answerText: ''
   }
@@ -21,6 +24,11 @@ class NewQuestionViewLogic extends Component {
 
     console.log(newQuestion);
     //this.props.addQuestion(newQuestion);
+  }
+
+  componentDidMount() {
+    const { id } = this.props.navigation.state.params;
+    this.setState({ deckId: id });
   }
 
   componentDidUpdate( ) {
