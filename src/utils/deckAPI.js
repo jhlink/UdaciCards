@@ -11,20 +11,21 @@ export const getAllDecks = async () => {
           const deckKey = arrayOfDeckKeyAndValue[0];
           const deckValue = JSON.parse(arrayOfDeckKeyAndValue[1]);
            
-          console.log( deckKey );
-          console.log( deckValue );
+          //console.log( deckKey );
+          //console.log( deckValue );
           return { [ deckKey ] : deckValue };
         });
       });
       
       if (decks !== null) {
         const deckKeys = decks.filter( (key) => key.includes( PARTIAL_DECK_KEY ) );
-        console.log(deckKeys);
+        //console.log(deckKeys);
         return deckKeys;
       }
 
     });
   } catch (error) {
+    console.log('getAllDecks');
     console.log(error);
   }
 };
