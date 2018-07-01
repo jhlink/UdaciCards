@@ -3,28 +3,23 @@ import { PARTIAL_DECK_KEY } from './storageKeys';
 
 export const getAllDecks = async () => {
   try {
-    const result =  await AsyncStorage.getAllKeys( async (err, keys) =>  {
-      const deckKeys = keys.filter( (key) => key.includes( PARTIAL_DECK_KEY ) );
+    const deckKeys = await AsyncStorage.getAllKeys();
+    const filteredKeys =  deckKeys.filter( (key) => key.includes( PARTIAL_DECK_KEY ) );
 
-      const decks = await AsyncStorage.multiGet(deckKeys, (err, stores) => {
-        return stores.map( (arrayOfDeckKeyAndValue) => {
-          const deckKey = arrayOfDeckKeyAndValue[0];
-          const deckValue = JSON.parse(arrayOfDeckKeyAndValue[1]);
-           
-          return { [ deckKey ] : deckValue };
-        });
-      });
-      
-      if (decks !== null) {
-        return decks;
-      }
+    const serializedDecks =  await AsyncStorage.multiGet(filteredKeys);
+    const formatted =  serializedDecks.map( (arrayOfDeckKeyAndValue) => {
+      const deckValue = JSON.parse(arrayOfDeckKeyAndValue[1]);
+            
+      return deckValue;
     });
 
-    return result;
+    console.log(formatted);
+
+    return formatted;
   } catch (error) {
-    console.log('getAllDecks');
-    console.log(error);
+    console.log('Error getAllDecks: ', error);
   }
+
 };
 
 //  Note: DeckData is unserialized, raw, JSON object. `deckId` is assumed to be a string.
