@@ -24,6 +24,13 @@ function deckReducer (state = {}, action) {
       };
     }
 
+    case REMOVE_DECK: {
+      return { 
+        ...state,
+        deckId 
+      };
+    }
+
     default: 
       return state;
   }
