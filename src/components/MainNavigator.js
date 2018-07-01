@@ -13,7 +13,7 @@ const MainNavigator =  createStackNavigator({
   }, DeckView: {
     screen: SingleDeckViewLogic,
     navigationOptions: ({ navigation }) => ({
-      headerTitle: `${navigation.state.params.deckName}` 
+      headerTitle: 'DECKS' 
     })
   }, QuizView: {
     screen: QuizView,
