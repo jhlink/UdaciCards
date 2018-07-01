@@ -18,6 +18,7 @@ function deckReducer (state = {}, action) {
 
     case ADD_DECK: {
       return { 
+        ...state,
         deck: { 
           ...deck,
           deckAdded: true
