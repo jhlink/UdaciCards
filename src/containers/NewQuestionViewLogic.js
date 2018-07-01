@@ -14,7 +14,7 @@ class NewQuestionViewLogic extends Component {
   state = {
     deckId: '',
     questionText: '',
-    answerText: ''
+    answerText: '',
   }
 
   toDeckView = () => {
@@ -24,6 +24,9 @@ class NewQuestionViewLogic extends Component {
     };
 
     this.props.addQuestion(newQuestion);
+
+    this.setState({ id: newQuestion.id });
+
   }
 
   componentDidMount() {
@@ -31,12 +34,11 @@ class NewQuestionViewLogic extends Component {
     this.setState({ deckId: id });
   }
 
-  componentDidUpdate( ) {
+  componentDidUpdate() {
     const { question, goBack } = this.props;
+    const { id } = this.state;
 
-    if (question !== undefined && question.questionAdded) {
-      this.setState = INIT_QUESTION; 
-
+    if (question !== undefined && question.id === id) {
       goBack();
     }
   }
@@ -65,7 +67,7 @@ class NewQuestionViewLogic extends Component {
 }
 
 function mapStateToProps ( state ) {
-  const { question } = state.questionReducer;
+  const {  question } = state.questionReducer;
 
   return {
     question 

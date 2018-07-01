@@ -15,10 +15,11 @@ class SingleDeckViewLogic extends Component {
 
   toNewQuestionView = () => {
     const { goToScreen } = this.props;
+    const { id } = this.state;
 
     goToScreen(
       'NewQuestionViewLogic',
-      { ...this.state }
+      { id }
     );
   }
 
