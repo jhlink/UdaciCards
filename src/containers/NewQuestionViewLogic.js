@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import NewQuestionView from '../components/NewQuestionView';
 import { connect } from 'react-redux';
 import { createQuestion } from '../actions';
+import uuidv4 from 'uuid/v4';
 
 const INIT_QUESTION = {
   deckId: '',
@@ -18,7 +19,7 @@ class NewQuestionViewLogic extends Component {
 
   toDeckView = () => {
     const newQuestion = {
-      id: 'qTest',
+      id: uuidv4(),
       ...this.state
     };
 
