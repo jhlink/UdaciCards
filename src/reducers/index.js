@@ -5,7 +5,6 @@ import {
   REMOVE_DECK
 } from '../actions';
 
-
 function deckReducer (state = {}, action) {
   const { decks, deck, deckId } = action;
 
@@ -19,8 +18,10 @@ function deckReducer (state = {}, action) {
 
     case ADD_DECK: {
       return { 
-        ...state,
-        deck 
+        deck: { 
+          ...deck,
+          deckAdded: true
+        }
       };
     }
 
