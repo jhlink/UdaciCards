@@ -2,7 +2,7 @@ import { createStackNavigator } from 'react-navigation';
 import TabNav from './TabNav';
 import SingleDeckViewLogic from '../containers/SingleDeckViewLogic';
 import NewQuestionViewLogic from '../containers/NewQuestionViewLogic';
-import QuizView from './QuizView';
+import QuizViewLogic from '../containers/QuizViewLogic';
 
 const MainNavigator =  createStackNavigator({
   Decks: {
@@ -15,8 +15,8 @@ const MainNavigator =  createStackNavigator({
     navigationOptions: ({ navigation }) => ({
       headerTitle: 'DECKS' 
     })
-  }, QuizView: {
-    screen: QuizView,
+  }, QuizViewLogic: {
+    screen: QuizViewLogic,
     navigationOptions: () => ({
       headerTitle: 'Quiz Time!' 
     })
