@@ -28,12 +28,14 @@ class NewDeckView extends Component {
   }
 
   componentDidUpdate( ) {
-    if (this.props.deckAdded) {
+    const { deck, goToDeck } = this.props;
+
+    if (deck !== undefined && deck.deckAdded) {
       this.setState = INIT_DECK; 
 
-      this.props.goToDeck(
+      goToDeck(
         'DeckView',
-        { ...this.state }
+        { deck }
       );
     }
   }
@@ -59,7 +61,7 @@ function mapStateToProps ( state ) {
   const { deck } = state.deckReducer;
 
   return {
-    ...deck
+    deck
   };
 }
 
