@@ -1,20 +1,32 @@
 import { AsyncStorage } from 'react-native';
 import { PARTIAL_DECK_KEY } from './storageKeys';
 
-export const getAllDecks = () => {
-  return AsyncStorage.getAllKeys((err, keys) => {
-    const deckKeys = keys.filter( (key) => key.includes( PARTIAL_DECK_KEY ) );
-    return AsyncStorage.multiGet(deckKeys, (err, stores) => {
-      return stores.map( (arrayOfDeckKeyAndValue) => {
-        const deckKey = arrayOfDeckKeyAndValue[0];
-        const deckValue = JSON.parse(arrayOfDeckKeyAndValue[1]);
+export const getAllDecks = async () => {
+  try {
+    await AsyncStorage.getAllKeys( async (err, keys) =>  {
+      const deckKeys = keys.filter( (key) => key.includes( PARTIAL_DECK_KEY ) );
+      
+      const decks =  await AsyncStorage.multiGet(deckKeys, (err, stores) => {
+        return stores.map( (arrayOfDeckKeyAndValue) => {
+          const deckKey = arrayOfDeckKeyAndValue[0];
+          const deckValue = JSON.parse(arrayOfDeckKeyAndValue[1]);
            
-        console.log( deckKey );
-        console.log( deckValue );
-        return { [ deckKey ] : deckValue };
+          console.log( deckKey );
+          console.log( deckValue );
+          return { [ deckKey ] : deckValue };
+        });
       });
+      
+      if (decks !== null) {
+        const deckKeys = decks.filter( (key) => key.includes( PARTIAL_DECK_KEY ) );
+        console.log(deckKeys);
+        return deckKeys;
+      }
+
     });
-  });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 //  Note: DeckData is unserialized, raw, JSON object. `deckId` is assumed to be a string.
