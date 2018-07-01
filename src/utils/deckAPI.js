@@ -34,14 +34,11 @@ export const getAllDecks = async () => {
 export const addDeck = async ( deckId, deckJSONData ) => {
   const deckAsyncStorageKey = PARTIAL_DECK_KEY + deckId;
   const serializedData = JSON.stringify( deckJSONData );
-  return await AsyncStorage.setItem(deckAsyncStorageKey, serializedData)
-    .then( (err) => {
-      if (err) {
-        console.error('addDeck storage failure');
-      } else {
-        console.log('success');
-      }
-    });
+  try {
+    const result = await AsyncStorage.setItem(deckAsyncStorageKey, serializedData);
+  } catch (err) {
+    console.error('addDeck storage failure');
+  }
 };
 
 //  Note: `deckId` is assumed to be a string.
