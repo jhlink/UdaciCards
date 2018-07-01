@@ -38,3 +38,7 @@ export const createDeck = ( deck ) => dispatch => {
     .then( () => dispatch(addDeck(deck)));
 };
 
+export const purgeDeck = ( deckId ) => dispatch => {
+  return DeckAPI.deleteDeck( deckId )
+    .then( () => dispatch(removeDeck(deckId)));
+};
