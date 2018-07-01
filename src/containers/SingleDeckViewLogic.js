@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import SingleDeckView from '../components/SingleDeckView';
 
 class SingleDeckViewLogic extends Component { 
@@ -13,14 +14,18 @@ class SingleDeckViewLogic extends Component {
   }
 
   toNewQuestionView = () => {
-    this.props.navigation.navigate(
+    const { goToScreen } = this.props;
+
+    goToScreen(
       'NewQuestionView',
       { ...this.state }
     );
   }
 
   toQuizView = () => {
-    this.props.navigation.navigate(
+    const { goToScreen } = this.props;
+
+    goToScreen(
       'QuizView',
       { ...this.state }
     );
@@ -40,4 +45,12 @@ class SingleDeckViewLogic extends Component {
   }
 }
 
-export default SingleDeckViewLogic;
+function mapDispatchToProps ( dispatch, { navigation }) {
+  return {
+    goToScreen: (componentAsString, propsToPass) => {
+      navigation.navigate(componentAsString, propsToPass);      
+    }
+  };
+}
+
+export default connect(null, mapDispatchToProps)(SingleDeckViewLogic);
