@@ -28,7 +28,6 @@ export const addDeck = ( deckId, deckJSONData ) => {
         console.log('success');
       }
     });
-
 };
 
 //  Note: `deckId` is assumed to be a string.
