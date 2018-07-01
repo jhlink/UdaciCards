@@ -3,7 +3,7 @@ import { PARTIAL_DECK_KEY } from './storageKeys';
 
 export const getAllDecks = async () => {
   try {
-    await AsyncStorage.getAllKeys( async (err, keys) =>  {
+    const result =  await AsyncStorage.getAllKeys( async (err, keys) =>  {
       const deckKeys = keys.filter( (key) => key.includes( PARTIAL_DECK_KEY ) );
 
       const decks = await AsyncStorage.multiGet(deckKeys, (err, stores) => {
@@ -18,8 +18,9 @@ export const getAllDecks = async () => {
       if (decks !== null) {
         return decks;
       }
-
     });
+
+    return result;
   } catch (error) {
     console.log('getAllDecks');
     console.log(error);
