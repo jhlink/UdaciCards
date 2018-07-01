@@ -1,5 +1,5 @@
 import { AsyncStorage } from 'react-native';
-import { PARTIAL_DECK_KEY } from './storageKey';
+import { PARTIAL_DECK_KEY } from './storageKeys';
 
 export const getAllDecks = () => {
   AsyncStorage.getAllKeys((err, keys) => {
