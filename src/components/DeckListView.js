@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { TouchableOpacity, View } from 'react-native';
 import styled from 'styled-components/native';
 import Deck from './Deck';
@@ -51,5 +52,10 @@ class DeckListView extends Component {
   }
 }
 
-export default DeckListView;
+function mapStateToProps( state ) {
+  const { decks } = state;
+  return { decks };
+}
+
+export default connect(mapStateToProps)(DeckListView);
 
