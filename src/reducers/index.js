@@ -17,6 +17,13 @@ function deckReducer (state = {}, action) {
       };
     }
 
+    case ADD_DECK: {
+      return { 
+        ...state,
+        deck 
+      };
+    }
+
     default: 
       return state;
   }
