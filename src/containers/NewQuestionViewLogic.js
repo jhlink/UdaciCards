@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
-
 import NewQuestionView from '../components/NewQuestionView';
 
 class NewQuestionViewLogic extends Component { 
@@ -11,7 +10,7 @@ class NewQuestionViewLogic extends Component {
 
   render() {
     return (
-      <NewQuestionViewLogic />
+      <NewQuestionView />
     ); 
   }
 }
