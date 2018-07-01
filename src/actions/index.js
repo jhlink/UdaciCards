@@ -25,4 +25,8 @@ export const getDecks = () => dispatch => {
     .then( (decks) => dispatch(loadDecks(decks)));
 };
 
-   
+export const createDeck = ( deck ) => dispatch => {
+  return DeckAPI.addDeck( deck.id, deck )
+    .then( () => dispatch(addDeck(deck)));
+};
+
