@@ -8,9 +8,8 @@ class SingleDeckViewLogic extends Component {
   }
 
   componentDidMount() {
-    this.setState({
-      ...this.props 
-    });
+    const { deck } = this.props.navigation.state.params;
+    this.setState({ ...deck });
   }
 
   toNewQuestionView = () => {
@@ -28,8 +27,13 @@ class SingleDeckViewLogic extends Component {
   }
 
   render() {
+    const { cardCount, deckName } = this.state;
+
     return(
-      <SingleDeckView />
+      <SingleDeckView 
+        deckName={ deckName } 
+        cardCount={ cardCount } 
+      />
     );
   }
 }
