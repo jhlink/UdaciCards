@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import NewQuestionView from '../components/NewQuestionView';
+import { connect } from 'react-redux';
 
 const INIT_QUESTION = {
   questionText: '',
@@ -20,6 +21,16 @@ class NewQuestionViewLogic extends Component {
 
     console.log(newQuestion);
     //this.props.addQuestion(newQuestion);
+  }
+
+  componentDidUpdate( ) {
+    const { question, goBack } = this.props;
+
+    if (question !== undefined && question.deckAdded) {
+      this.setState = INIT_QUESTION; 
+
+      goBack();
+    }
   }
 
   handleAnswerTextChange = ( answerText ) => {
@@ -45,6 +56,21 @@ class NewQuestionViewLogic extends Component {
   }
 }
 
+function mapStateToProps ( state ) {
+  const { question } = state.questionReducer;
 
-export default NewQuestionViewLogic;
+  return {
+    question 
+  };
+}
+
+function mapDispatchToProps ( dispatch, { navigation }) {
+  return {
+    addQuestion: (questionData) =>  dispatch(createQuestion(questionData)),
+    goBack: () => navigation.goBack(), 
+  };
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewQuestionViewLogic);
 
