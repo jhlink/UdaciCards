@@ -2,7 +2,7 @@ import {
   Platform
 } from 'react-native';
 import { createMaterialTopTabNavigator } from 'react-navigation';
-import NewDeckView from './NewDeckView';
+import NewDeckView from '../containers/NewDeckView';
 import DeckListView from './DeckListView';
 import { purple, white } from '../utils/colors';
 import { FontAwesome } from '@expo/vector-icons';
