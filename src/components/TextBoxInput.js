@@ -2,11 +2,11 @@ import React from 'react';
 import { Text, TextInput, StyleSheet } from 'react-native';
 import { gray } from '../utils/colors';
 
-const TextBoxInput = ({ placeholderText, onPress, style = {} }) => {
+const TextBoxInput = ({ placeholderText, onChangeText, style = {} }) => {
   return (
     <TextInput
       style={[styles.input, style]}
-      onPress={ null }
+      onChangeText={ onChangeText }
       editable={ true }
       maxLength={ 70 }
       placeholder={ placeholderText }
