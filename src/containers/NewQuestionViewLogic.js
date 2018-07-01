@@ -12,6 +12,14 @@ class NewQuestionViewLogic extends Component {
     goBack();
   }
 
+  handleAnswerTextChange = ( answerText ) => {
+    this.setState( { answerText });
+  }
+
+  handleQuestionTextChange = ( questionText ) => {
+    this.setState( { questionText });
+  }
+
   render() {
     const { questionText, answerText } = this.state;
 
@@ -19,6 +27,8 @@ class NewQuestionViewLogic extends Component {
       <NewQuestionView
         questionText={ questionText }   
         answerText={ answerText }
+        handleQuestionChange={ this.handleQuestionTextChange }   
+        handleAnswerChange={ this.handleAnswerTextChange }
       />
     ); 
   }

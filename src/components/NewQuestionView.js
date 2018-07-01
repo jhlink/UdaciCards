@@ -20,17 +20,19 @@ const styles = StyleSheet.create({
   }
 });
 
-const NewQuestionView = ({ questionText, answerText }) => {
+const NewQuestionView = ({ questionText, answerText, handleQuestionChange, handleAnswerChange }) => {
 
   return (
     <CenterView>
       <TextBoxInput
         placeholderText="Question"  
         value={ questionText }
+        onChangeText={ handleQuestionChange }
       />
       <TextBoxInput
         placeholderText="Answer" 
         value={ answerText }
+        onChangeText={ handleAnswerChange }
       />
       <TextButton
         style={styles.strtBtn} 
