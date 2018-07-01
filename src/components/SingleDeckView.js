@@ -23,18 +23,18 @@ const styles = StyleSheet.create({
   }
 });
 
-const SingleDeckView = ({ deckName, cardCount }) => { 
+const SingleDeckView = ({ deckName, cardCount, handleCardAdd, handleQuizStart }) => { 
   return (
     <CenterView>
       <Deck deckName={ deckName } cardCount={ cardCount } />
       <ButtonView>
         <TextButton
-          onPress={this.toNewQuestionView}
+          onPress={ handleCardAdd }
         >
             Add Card
         </TextButton>
         <TextButton
-          onPress={this.toQuizView}
+          onPress={ handleQuizStart }
           style={styles.strtBtn} 
         >
             Start Quiz 

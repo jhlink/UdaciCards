@@ -33,6 +33,8 @@ class SingleDeckViewLogic extends Component {
       <SingleDeckView 
         deckName={ deckName } 
         cardCount={ cardCount } 
+        handleCardAdd={ this.toNewQuestionView }
+        handleQuizStart={ this.toQuizView }
       />
     );
   }
