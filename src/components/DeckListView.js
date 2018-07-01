@@ -58,7 +58,7 @@ function mapDispatchToProps ( dispatch ) {
 }
 
 function mapStateToProps( state ) {
-  const { decks } = state;
+  const { decks } = state.deckReducer;
   return { decks };
 }
 
