@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import styled from 'styled-components/native';
 import Deck from './Deck';
+import { getDecks } from '../actions';
 
 const CenterView = styled.View`
   justify-content: center;
@@ -11,45 +12,49 @@ const CenterView = styled.View`
   borderStyle: solid;
 `;
 
-const dummyData = [
-  { 
-    deckName: 'Italian',
-    cardCount: 30 
-  },
-  { 
-    deckName: 'English',
-    cardCount: 20 
-  }
-];
-
 class DeckListView extends Component { 
   state = {
     decks: []
   }
 
   componentDidMount() {
-    this.setState({ decks: dummyData });  
+    this.props.fetchDecks();
   }
 
+  handlePress = () => {
+    this.props.fetchDecks();
+  };
+
   render() {
-    const { decks } = this.state;
+    const { decks } = this.props;
 
     return (
       <View>
-        { decks.map((deck) => {
-          return (
-            <CenterView key={deck.deckName}>
-              <TouchableOpacity onPress={() => this.props.navigation.navigate(
-                'DeckView',
-                { deckName: deck.deckName})}>
-                <Deck deckName={ deck.deckName } cardCount={ deck.cardCount } />
-              </TouchableOpacity>
-            </CenterView>
-          );
-        })}
+        { decks !== undefined &&
+          decks.map((deck) => {
+            return (
+              <CenterView key={deck.deckName}>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate(
+                  'DeckView',
+                  { deckName: deck.deckName})}>
+                  <Deck deckName={ deck.deckName } cardCount={ deck.cardCount } />
+                </TouchableOpacity>
+              </CenterView>
+            );
+          })
+        }
+        <TouchableOpacity onPress={this.handlePress}>
+          <Text>blah</Text>
+        </TouchableOpacity>
       </View>
     ); 
   }
+}
+
+function mapDispatchToProps ( dispatch ) {
+  return { 
+    fetchDecks: () => dispatch(getDecks()),
+  };
 }
 
 function mapStateToProps( state ) {
@@ -57,5 +62,5 @@ function mapStateToProps( state ) {
   return { decks };
 }
 
-export default connect(mapStateToProps)(DeckListView);
+export default connect(mapStateToProps, mapDispatchToProps)( DeckListView );
 
