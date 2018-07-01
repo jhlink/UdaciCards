@@ -1,16 +1,25 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
 import NewQuestionView from '../components/NewQuestionView';
 
 class NewQuestionViewLogic extends Component { 
+  state = {
+    questionText: '',
+    answerText: ''
+  }
+
   toDeckView = () => {
     const { goBack } = this.props.navigation;
     goBack();
   }
 
   render() {
+    const { questionText, answerText } = this.state;
+
     return (
-      <NewQuestionView />
+      <NewQuestionView
+        questionText={ questionText }   
+        answerText={ answerText }
+      />
     ); 
   }
 }
