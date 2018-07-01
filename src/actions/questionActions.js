@@ -2,7 +2,7 @@ import * as QuestionAPI from '../utils/questionAPI';
 
 // Actions
 export const GET_QUESTIONS = 'GET_QUESTIONS';
-export const ADD_QUESTION = 'ADD_DECK';
+export const ADD_QUESTION = 'ADD_QUESTION';
 export const REMOVE_QUESTION = 'REMOVE_QUESTION';
 
 // Action Creators
