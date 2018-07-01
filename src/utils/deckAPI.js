@@ -1,7 +1,7 @@
 import { AsyncStorage } from 'react-native';
 import { PARTIAL_DECK_KEY } from './storageKey';
 
-export const getAllDecks = () => 
+export const getAllDecks = () => {
   AsyncStorage.getAllKeys((err, keys) => {
     const deckKeys = keys.filter( (key) => key.includes( PARTIAL_DECK_KEY ) );
     return AsyncStorage.multiGet(deckKeys, (err, stores) => {
@@ -15,6 +15,7 @@ export const getAllDecks = () =>
       });
     });
   });
+};
 
 //  Note: DeckData is unserialized, raw, JSON object. `deckId` is assumed to be a string.
 export const addDeck = ( deckId, deckJSONData ) => {
