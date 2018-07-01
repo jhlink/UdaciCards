@@ -3,6 +3,7 @@ import * as DeckAPI from '../utils/deckAPI';
 // Actions
 export const GET_DECKS = 'GET_DECKS';
 export const ADD_DECK = 'ADD_DECK';
+export const REMOVE_DECK = 'REMOVE_DECK';
 
 // Action Creators
 const loadDecks = ( decks ) => {
