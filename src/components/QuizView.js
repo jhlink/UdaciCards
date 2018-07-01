@@ -5,13 +5,13 @@ import TextButton from './TextButton';
 import Question from './Question';
 import { white, green, red } from '../utils/colors';
 
-const QuizView = ({ promptText, answerText, handleCorrectBtn, handleIncorrectBtn }) => {  
+const QuizView = ({ promptText, questionState, handleCardFlip, handleCorrectBtn, handleIncorrectBtn }) => {  
   return (
     <CenterView>
       <Question 
-        onPress={ null }
+        onPress={ handleCardFlip }
         promptText={ promptText } 
-        answerText={ answerText }
+        questionState={ questionState }
       />
       <ButtonView>
         <TextButton

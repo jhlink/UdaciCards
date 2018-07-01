@@ -7,7 +7,8 @@ import { getQuestions } from '../actions';
 class QuizViewLogic extends Component { 
   state = {
     answeredQuestion: [],
-    score: 0
+    score: 0,
+    isQuestion: true 
   }
 
   componentDidMount() {
@@ -23,16 +24,30 @@ class QuizViewLogic extends Component {
     const newScore = (this.state.score - 1) > 0 ? this.state.score - 1 : 0 ;
     this.setState({ score: newScore });
   }
+
+  toggleQuestionAnswerPrompt = () => {
+    const { isQuestion } = this.state;
+    if (isQuestion) {
+      this.setState({
+        isQuestion: false
+      });
+    } else {
+      this.setState({
+        isQuestion: true 
+      });
+    }
+  }
     
   render() {
     const { questions } = this.props;
-    const { score } = this.state;
+    const { score, isQuestion } = this.state;
     console.log('score: ', score);
 
     return(
       <QuizView
         promptText={''}
-        answerText={''}
+        questionState={ isQuestion }
+        handleCardFlip={ this.toggleQuestionAnswerPrompt }
         handleCorrectBtn={ this.handleCorrectAnswer }
         handleIncorrectBtn={ this.handleIncorrectAnswer }
       />

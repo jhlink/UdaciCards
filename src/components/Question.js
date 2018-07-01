@@ -13,15 +13,19 @@ const QuestionPrompt = styled.Text`
   textAlign: center;
 `;
 
-const Question = ({ promptText, answerText, onPress, style = {} }) => {
+const Question = ({ promptText, questionState, onPress, style = {} }) => {
+  const buttonText = questionState ? 'Question' : 'Answer';
+
+  console.log(buttonText);
+
   return (
     <CenterView>
       <QuestionPrompt>
         { promptText } 
       </QuestionPrompt>
       <TouchableOpacity
-        onPress={null}>
-        <Text style={[styles.btn, style]}> Answer </Text> 
+        onPress={ onPress }>
+        <Text style={[styles.btn, style]}> { buttonText  }  </Text> 
       </TouchableOpacity>
     </CenterView>
   );
