@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, TextInput, StyleSheet } from 'react-native';
 import { gray } from '../utils/colors';
 
-const TextBoxInput = ({ placeholderText, onChangeText, style = {} }) => {
+const TextBoxInput = ({ value, placeholderText, onChangeText, style = {} }) => {
   return (
     <TextInput
       style={[styles.input, style]}
@@ -11,6 +11,7 @@ const TextBoxInput = ({ placeholderText, onChangeText, style = {} }) => {
       maxLength={ 70 }
       placeholder={ placeholderText }
       placeholderColor={ gray }
+      value={ value }
     />
   );
 };
