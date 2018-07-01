@@ -5,22 +5,18 @@ export const getAllDecks = async () => {
   try {
     await AsyncStorage.getAllKeys( async (err, keys) =>  {
       const deckKeys = keys.filter( (key) => key.includes( PARTIAL_DECK_KEY ) );
-      
-      const decks =  await AsyncStorage.multiGet(deckKeys, (err, stores) => {
+
+      const decks = await AsyncStorage.multiGet(deckKeys, (err, stores) => {
         return stores.map( (arrayOfDeckKeyAndValue) => {
           const deckKey = arrayOfDeckKeyAndValue[0];
           const deckValue = JSON.parse(arrayOfDeckKeyAndValue[1]);
            
-          //console.log( deckKey );
-          //console.log( deckValue );
           return { [ deckKey ] : deckValue };
         });
       });
       
       if (decks !== null) {
-        const deckKeys = decks.filter( (key) => key.includes( PARTIAL_DECK_KEY ) );
-        //console.log(deckKeys);
-        return deckKeys;
+        return decks;
       }
 
     });
