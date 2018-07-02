@@ -1,8 +1,8 @@
 import { createStackNavigator } from 'react-navigation';
 import TabNav from './TabNav';
-import SingleDeckView from './SingleDeckView';
-import QuizView from './QuizView';
-import NewQuestionView from './NewQuestionView';
+import SingleDeckViewLogic from '../containers/SingleDeckViewLogic';
+import NewQuestionViewLogic from '../containers/NewQuestionViewLogic';
+import QuizViewLogic from '../containers/QuizViewLogic';
 
 const MainNavigator =  createStackNavigator({
   Decks: {
@@ -11,17 +11,17 @@ const MainNavigator =  createStackNavigator({
       header: null 
     })
   }, DeckView: {
-    screen: SingleDeckView,
+    screen: SingleDeckViewLogic,
     navigationOptions: ({ navigation }) => ({
-      headerTitle: `${navigation.state.params.deckName}` 
+      headerTitle: 'DECKS' 
     })
-  }, QuizView: {
-    screen: QuizView,
+  }, QuizViewLogic: {
+    screen: QuizViewLogic,
     navigationOptions: () => ({
       headerTitle: 'Quiz Time!' 
     })
-  }, NewQuestionView: {
-    screen: NewQuestionView,
+  }, NewQuestionViewLogic: {
+    screen: NewQuestionViewLogic,
     navigationOptions: () => ({
       headerTitle: 'New Question' 
     })

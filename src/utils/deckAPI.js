@@ -33,6 +33,19 @@ export const addDeck = async ( deckId, deckJSONData ) => {
   }
 };
 
+export const incrementCardCount = async ( deckId ) => {
+  const deckAsyncStorageKey = PARTIAL_DECK_KEY + deckId;
+  try {
+    const result = await AsyncStorage.getItem(deckAsyncStorageKey);
+    const parsedResult = JSON.parse(result);
+    const newDeckCardCout = ++parsedResult.cardCount;
+    addDeck(deckId, parsedResult);
+    return newDeckCardCout;
+  } catch (err) {
+    console.error('addDeck storage failure');
+  }
+};
+
 //  Note: `deckId` is assumed to be a string.
 export const deleteDeck = ( deckId ) => {
   const deckAsyncStorageKey = PARTIAL_DECK_KEY + deckId;

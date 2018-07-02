@@ -36,7 +36,7 @@ class DeckListView extends Component {
               <CenterView key={deck.id}>
                 <TouchableOpacity onPress={() => this.props.navigation.navigate(
                   'DeckView',
-                  { deckName: deck.deckName})}>
+                  { deck })}>
                   <Deck deckName={ deck.deckName } cardCount={ deck.cardCount } />
                 </TouchableOpacity>
               </CenterView>

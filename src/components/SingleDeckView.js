@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
 import Deck from './Deck';
 import TextButton from './TextButton';
-import { white, black } from '../utils/colors';
+import { white, black, darkGray, lightGray } from '../utils/colors';
 
 const CenterView = styled.View`
   align-content: center;
@@ -20,62 +20,37 @@ const styles = StyleSheet.create({
   strtBtn: {
     backgroundColor: black,
     color: white
+  },
+  disabled: {
+    backgroundColor: darkGray,
+    color: lightGray,
+    borderWidth: 0
   }
 });
 
-
-const dummyData = {
-  deckName: 'Italian',
-  cardCount: 30
-};
-
-class SingleDeckView extends Component { 
-  state = {
-    deckName: 'Deck',
-    cardCount: 0
-  }
-
-  componentDidMount() {
-    this.setState(dummyData);
-  }
-
-  toNewQuestionView = () => {
-    this.props.navigation.navigate(
-      'NewQuestionView',
-      { ...this.state }
-    );
-  }
-
-  toQuizView = () => {
-    this.props.navigation.navigate(
-      'QuizView',
-      { ...this.state }
-    );
-  }
-
-  render() {
-    const { deckName, cardCount } = this.state;
-
-    return (
-      <CenterView>
-        <Deck deckName={ deckName } cardCount={ cardCount } />
-        <ButtonView>
-          <TextButton
-            onPress={this.toNewQuestionView}
-          >
+const SingleDeckView = ({ deckName, cardCount, handleCardAdd, handleQuizStart }) => { 
+  const disableQuiz = cardCount === 0;
+  const quizBtnStyle = disableQuiz ? styles.disabled : styles.strtBtn;
+  return (
+    <CenterView>
+      <Deck deckName={ deckName } cardCount={ cardCount } />
+      <ButtonView>
+        <TextButton
+          onPress={ handleCardAdd }
+        >
             Add Card
-          </TextButton>
-          <TextButton
-            onPress={this.toQuizView}
-            style={styles.strtBtn} 
-          >
+        </TextButton>
+        <TextButton
+          onPress={ handleQuizStart }
+          style={ quizBtnStyle } 
+          disabled={ disableQuiz }
+        >
             Start Quiz 
-          </TextButton>
-        </ButtonView>
-      </CenterView>
-    ); 
-  }
-}
+        </TextButton>
+      </ButtonView>
+    </CenterView>
+  ); 
+};
 
 export default SingleDeckView;
 
