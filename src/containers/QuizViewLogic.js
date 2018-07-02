@@ -60,7 +60,8 @@ class QuizViewLogic extends Component {
     this.setState({
       completedQuiz: remainingQuestions.length === 0,
       answeredQuestions: updatedAnsweredQuestions,
-      currentQuestion: nextQuestion
+      currentQuestion: nextQuestion,
+      isQuestion: true,
     });
   }
 
