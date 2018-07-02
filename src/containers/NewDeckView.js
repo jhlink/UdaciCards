@@ -20,7 +20,6 @@ class NewDeckView extends Component {
 
   toSingleDeckView = () => {
     const { deckName } = this.state;
-    // TODO: Will replace 'test' with uuidv4 post development.
 
     const scrubInputs = deckName.trim();
 
@@ -34,7 +33,7 @@ class NewDeckView extends Component {
 
     const newDeck = {
       cardCount: 0,
-      id: 'test',
+      id: uuidv4(),
       ...this.state
     };
 
