@@ -109,13 +109,13 @@ class QuizViewLogic extends Component {
     
   render() {
     const { completedQuiz, score, isQuestion, currentQuestion, answeredQuestions } = this.state;
-    const { questions } = this.props;
+    const { questions, goBack } = this.props;
 
     console.log('completed', completedQuiz);
     if ( completedQuiz ) {
       return ( 
         <ScoreView 
-
+          handleDeckViewNav={ goBack }
         />
       );
     }
@@ -138,9 +138,10 @@ class QuizViewLogic extends Component {
   }
 }
 
-function mapDispatchToProps ( dispatch ) {
+function mapDispatchToProps ( dispatch, { navigation } ) {
   return { 
     fetchQuestions: () => dispatch(getQuestions()),
+    goBack: () => navigation.goBack(), 
   };
 }
 
