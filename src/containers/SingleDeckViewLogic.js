@@ -3,19 +3,9 @@ import { connect } from 'react-redux';
 import SingleDeckView from '../components/SingleDeckView';
 
 class SingleDeckViewLogic extends Component { 
-  state = {
-    deckName: 'Deck',
-    cardCount: 0
-  }
-
-  componentDidMount() {
-    const { deck } = this.props.navigation.state.params;
-    this.setState({ ...deck });
-  }
-
   toNewQuestionView = () => {
-    const { goToScreen } = this.props;
-    const { id } = this.state;
+    const { goToScreen, deck } = this.props;
+    const { id } = deck; 
 
     goToScreen(
       'NewQuestionViewLogic',
@@ -24,8 +14,8 @@ class SingleDeckViewLogic extends Component {
   }
 
   toQuizView = () => {
-    const { goToScreen } = this.props;
-    const { id } = this.state;
+    const { goToScreen, deck } = this.props;
+    const { id } = deck;
 
     goToScreen(
       'QuizViewLogic',
@@ -34,9 +24,9 @@ class SingleDeckViewLogic extends Component {
   }
 
   render() {
-    const { cardCount, deckName } = this.state;
+    const { cardCount, deckName } = this.props.deck;
 
-    return(
+    return (
       <SingleDeckView 
         deckName={ deckName } 
         cardCount={ cardCount } 
@@ -47,6 +37,18 @@ class SingleDeckViewLogic extends Component {
   }
 }
 
+function mapStateToProps ( state, ownProps ) {
+  const { decks } = state.deckReducer;
+  const { id } = ownProps.navigation.state.params.deck;
+  
+  if ( decks === undefined) {
+    return { };
+  }
+
+  const filteredDeck = decks.filter( (deck) => deck.id === id)[0];
+  return { deck: filteredDeck };
+}
+
 function mapDispatchToProps ( dispatch, { navigation }) {
   return {
     goToScreen: (componentAsString, propsToPass) => {
@@ -55,4 +57,4 @@ function mapDispatchToProps ( dispatch, { navigation }) {
   };
 }
 
-export default connect(null, mapDispatchToProps)(SingleDeckViewLogic);
+export default connect(mapStateToProps, mapDispatchToProps)(SingleDeckViewLogic);
