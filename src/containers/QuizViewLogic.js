@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import QuizView from '../components/QuizView';
-
+import ScoreView from '../components/ScoreView';
 import { getQuestions } from '../actions';
 
 class QuizViewLogic extends Component { 
@@ -9,7 +9,8 @@ class QuizViewLogic extends Component {
     answeredQuestions: [],
     score: 0,
     isQuestion: true,
-    currentQuestion: {}
+    currentQuestion: {},
+    completedQuiz: false
   }
 
   componentDidMount() {
@@ -33,7 +34,11 @@ class QuizViewLogic extends Component {
 
   handleNextQuestion = ( ) => {
     const { questions } = this.props;
-    const { answeredQuestions } = this.state;
+    const { answeredQuestions, currentQuestion } = this.state;
+
+    if ( !this.isEmpty(currentQuestion) ) {
+      answeredQuestions.push(currentQuestion.id); 
+    }
 
     const remainingQuestions = answeredQuestions.length !== 0  
       ? this.filterList(questions, answeredQuestions)  
@@ -41,7 +46,17 @@ class QuizViewLogic extends Component {
     
     const randomQuestionIndex = this.getRandomInt( remainingQuestions.length );
 
-    return remainingQuestions[ randomQuestionIndex ];
+    const nextQuestion = remainingQuestions.length > 0 
+      ? remainingQuestions[ randomQuestionIndex ] 
+      : { };
+
+    if ( this.isEmpty(nextQuestion) ) {
+      this.setState({
+        completedQuiz: true
+      });
+    }
+
+    return nextQuestion;
   }
 
   handleCorrectAnswer = () => {
@@ -76,10 +91,25 @@ class QuizViewLogic extends Component {
       });
     }
   }
+
+  isEmpty = ( object ) => {
+    return Object.keys(object).length === 0 && object.constructor === Object;
+  }
     
   render() {
-    const { score, isQuestion, currentQuestion } = this.state;
-    console.log('score: ', score);
+    const { completedQuiz, score, isQuestion, currentQuestion, answeredQuestions } = this.state;
+    const { questions } = this.props;
+
+    const hasAnsweredAllQuestions = this.isEmpty( currentQuestion ) && completedQuiz;
+
+    if ( hasAnsweredAllQuestions ) {
+      return ( 
+        <ScoreView 
+
+        />
+      );
+    }
+
 
     const cardPromptTest = isQuestion ? currentQuestion.questionText : currentQuestion.answerText;
 
