@@ -1,11 +1,11 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { Text, StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
 import TextButton from './TextButton';
 import Question from './Question';
 import { white, green, red } from '../utils/colors';
 
-const QuizView = ({ promptText, questionState, handleCardFlip, handleCorrectBtn, handleIncorrectBtn }) => {  
+const QuizView = ({ quizProgress, promptText, questionState, handleCardFlip, handleCorrectBtn, handleIncorrectBtn }) => {  
   return (
     <CenterView>
       <Question 
@@ -13,6 +13,9 @@ const QuizView = ({ promptText, questionState, handleCardFlip, handleCorrectBtn,
         promptText={ promptText } 
         questionState={ questionState }
       />
+      <Text>
+        { quizProgress }
+      </Text>
       <ButtonView>
         <TextButton
           onPress={ handleCorrectBtn }

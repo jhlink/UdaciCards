@@ -17,6 +17,16 @@ class QuizViewLogic extends Component {
     const { fetchQuestions } = this.props;
     fetchQuestions();
   }
+
+  componentDidUpdate() {
+    const { questions } = this.props;
+    const { currentQuestion, completedQuiz } = this.state;
+    if ( !this.isEmpty(questions) && !completedQuiz && this.isEmpty(currentQuestion) ) {
+      this.setState({
+        currentQuestion: this.handleNextQuestion() 
+      });
+    }
+  }
   
   getRandomInt = ( max ) => {
     return Math.floor(Math.random() * (max + 1));
@@ -36,8 +46,10 @@ class QuizViewLogic extends Component {
     const { questions } = this.props;
     const { answeredQuestions, currentQuestion } = this.state;
 
-    if ( !this.isEmpty(currentQuestion) ) {
-      answeredQuestions.push(currentQuestion.id); 
+    if ( !(this.isEmpty(currentQuestion)) ) {
+      this.setState({
+        answeredQuestions: [ ...answeredQuestions, currentQuestion.id] 
+      });
     }
 
     const remainingQuestions = answeredQuestions.length !== 0  
@@ -93,6 +105,9 @@ class QuizViewLogic extends Component {
   }
 
   isEmpty = ( object ) => {
+    if (object === undefined || object === null) {
+      return true;
+    }
     return Object.keys(object).length === 0 && object.constructor === Object;
   }
     
@@ -110,11 +125,14 @@ class QuizViewLogic extends Component {
       );
     }
 
-
     const cardPromptTest = isQuestion ? currentQuestion.questionText : currentQuestion.answerText;
+    const quizScore = questions !== undefined  
+      ? `${ answeredQuestions.length } / ${ questions.length }`
+      : '0 / 0';
 
     return(
       <QuizView
+        quizProgress={ quizScore }
         promptText={ cardPromptTest }
         questionState={ isQuestion }
         handleCardFlip={ this.toggleQuestionAnswerPrompt }
