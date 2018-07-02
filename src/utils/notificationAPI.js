@@ -12,3 +12,11 @@ export const setQuizCount = async (quizCount) => {
   }
 };
 
+export const clearQuizCount = async () => {
+  try {
+    await AsyncStorage.removeItem(QUIZ_COUNT_KEY);
+  } catch (error) {
+    console.log('Error clearQuizCount: ', error);
+  }
+};
+
