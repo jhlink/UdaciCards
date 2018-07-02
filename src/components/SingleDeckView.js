@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
 });
 
 const SingleDeckView = ({ deckName, cardCount, handleCardAdd, handleQuizStart }) => { 
+  const disableQuiz = cardCount === 0;
   return (
     <CenterView>
       <Deck deckName={ deckName } cardCount={ cardCount } />
@@ -36,6 +37,7 @@ const SingleDeckView = ({ deckName, cardCount, handleCardAdd, handleQuizStart })
         <TextButton
           onPress={ handleQuizStart }
           style={styles.strtBtn} 
+          disabled={ disableQuiz }
         >
             Start Quiz 
         </TextButton>
