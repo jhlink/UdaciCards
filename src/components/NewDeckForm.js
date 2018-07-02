@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Text,
   View,
   StyleSheet
 } from 'react-native';
@@ -28,19 +29,15 @@ const styles = StyleSheet.create({
   }
 });
 
-const NewDeckForm = ( props ) => {
-  const { 
-    deckName,
-    handleDeckName,
-    handleSubmit 
-  } = props;
-
-
+const NewDeckForm = ({ deckName, errorMsg, handleDeckName, handleSubmit }) => {
   return (
     <CenterView>
       <QuestionPrompt>
         What is the title of your new deck?
       </QuestionPrompt>
+      <Text> 
+        { errorMsg }
+      </Text>
       <TextBoxInput
         placeholderText="Deck Title" 
         onChangeText={ handleDeckName }

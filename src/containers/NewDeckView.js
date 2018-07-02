@@ -7,17 +7,31 @@ import uuidv4 from 'uuid/v4';
 
 const INIT_DECK = {
   deckName: '',
-  deckAdded: false
+  deckAdded: false,
+  errorMsg: ''
 };
 
 class NewDeckView extends Component { 
   state = {
     deckName: '',
-    deckAdded: false
+    deckAdded: false,
+    errorMsg: ''
   }
 
   toSingleDeckView = () => {
+    const { deckName } = this.state;
     // TODO: Will replace 'test' with uuidv4 post development.
+
+    const scrubInputs = deckName.trim();
+
+    if ( scrubInputs.length === 0 ) {
+      console.log('inputs', scrubInputs, scrubInputs.length);
+      this.setState({
+        errorMsg: 'Please add a deck name. :)'
+      });
+      return;
+    }
+
     const newDeck = {
       cardCount: 0,
       id: 'test',
@@ -43,10 +57,11 @@ class NewDeckView extends Component {
   }
 
   render() {
-    const { deckName } = this.state;
+    const { deckName, errorMsg } = this.state;
 
     return (
       <NewDeckForm 
+        errorMsg={ errorMsg }
         deckName={ deckName }
         handleSubmit={ this.toSingleDeckView }
         handleDeckName={ this.handleDeckNameChange }
