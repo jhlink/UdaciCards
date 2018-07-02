@@ -51,3 +51,8 @@ export const purgeDeck = ( deckId ) => dispatch => {
   return DeckAPI.deleteDeck( deckId )
     .then( () => dispatch(removeDeck(deckId)));
 };
+
+export const incrementDeckCardCount = ( deckId ) => dispatch => {
+  return DeckAPI.incrementCardCount( deckId )
+    .then( () => dispatch(incDeckCardCount(deckId)));
+}
