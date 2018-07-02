@@ -6,23 +6,62 @@ import { getQuestions } from '../actions';
 
 class QuizViewLogic extends Component { 
   state = {
-    answeredQuestion: [],
+    answeredQuestions: [],
     score: 0,
-    isQuestion: true 
+    isQuestion: true,
+    currentQuestion: {}
   }
 
   componentDidMount() {
     const { fetchQuestions } = this.props;
     fetchQuestions();
   }
+  
+  getRandomInt = ( max ) => {
+    return Math.floor(Math.random() * (max + 1));
+  }
+
+
+  filterList = ( targetList, filterCriteriaList ) => {
+    return targetList.filter(
+      function(e) {
+        return this.indexOf(e) < 0;
+      },
+      filterCriteriaList 
+    );
+  }
+
+  handleNextQuestion = ( ) => {
+    const { questions } = this.props;
+    const { answeredQuestions } = this.state;
+
+    const remainingQuestions = answeredQuestions.length !== 0  
+      ? this.filterList(questions, answeredQuestions)  
+      : questions;
+    
+    const randomQuestionIndex = this.getRandomInt( remainingQuestions.length );
+
+    return remainingQuestions[ randomQuestionIndex ];
+  }
 
   handleCorrectAnswer = () => {
-    this.setState({ score: this.state.score + 1});
+    const { score } = this.state;
+    const nextQuestion = this.handleNextQuestion();
+    const newScore = score + 1;
+    this.setState({ 
+      score: newScore,
+      currentQuestion: nextQuestion
+    });
   }
 
   handleIncorrectAnswer = () => {
-    const newScore = (this.state.score - 1) > 0 ? this.state.score - 1 : 0 ;
-    this.setState({ score: newScore });
+    const { score } = this.state;
+    const nextQuestion = this.handleNextQuestion();
+    const newScore = score > 0 ? score - 1 : 0;
+    this.setState({ 
+      score: newScore,
+      currentQuestion: nextQuestion
+    });
   }
 
   toggleQuestionAnswerPrompt = () => {
@@ -39,13 +78,14 @@ class QuizViewLogic extends Component {
   }
     
   render() {
-    const { questions } = this.props;
-    const { score, isQuestion } = this.state;
+    const { score, isQuestion, currentQuestion } = this.state;
     console.log('score: ', score);
+
+    const cardPromptTest = isQuestion ? currentQuestion.questionText : currentQuestion.answerText;
 
     return(
       <QuizView
-        promptText={''}
+        promptText={ cardPromptTest }
         questionState={ isQuestion }
         handleCardFlip={ this.toggleQuestionAnswerPrompt }
         handleCorrectBtn={ this.handleCorrectAnswer }
