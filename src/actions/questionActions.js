@@ -1,4 +1,5 @@
 import * as QuestionAPI from '../utils/questionAPI';
+import { incrementDeckCardCount } from './deckActions';
 
 // Actions
 export const GET_QUESTIONS = 'GET_QUESTIONS';
@@ -35,7 +36,11 @@ export const getQuestions = () => dispatch => {
 
 export const createQuestion = ( question ) => dispatch => {
   return QuestionAPI.addQuestion( question.id, question )
-    .then( () => dispatch(addQuestion(question)));
+    .then( () => dispatch(addQuestion(question)))
+    .then( () => { 
+      console.log(question.deckId);
+      return dispatch(incrementDeckCardCount(question.deckId));
+    });
 };
 
 export const purgeQuestion = ( questionId ) => dispatch => {
