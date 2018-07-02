@@ -1,11 +1,12 @@
 import {
   GET_DECKS,
   ADD_DECK,
-  REMOVE_DECK
+  REMOVE_DECK,
+  INC_DECK_CARD_COUNT,
 } from '../actions';
 
 function deckReducer (state = {}, action) {
-  const { decks, deck, deckId } = action;
+  const { decks, deck, deckId, deckScore } = action;
 
   switch (action.type) {
     case GET_DECKS: {
@@ -22,6 +23,25 @@ function deckReducer (state = {}, action) {
           ...deck,
           deckAdded: true
         }
+      };
+    }
+
+    case INC_DECK_CARD_COUNT: {
+      const newDeck = state.decks.map( (deck) => {
+        if (deck.id === deckId) {
+          const deckType = { 
+            ...deck,
+            cardCount: deckScore
+          };
+          console.log(deckType);
+          return deckType;
+        }
+        return deck;
+      });
+
+      return {
+        ...state,
+        decks: newDeck 
       };
     }
 
