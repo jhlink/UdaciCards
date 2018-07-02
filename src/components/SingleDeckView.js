@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
 import Deck from './Deck';
 import TextButton from './TextButton';
-import { white, black } from '../utils/colors';
+import { white, black, darkGray, lightGray } from '../utils/colors';
 
 const CenterView = styled.View`
   align-content: center;
@@ -20,11 +20,17 @@ const styles = StyleSheet.create({
   strtBtn: {
     backgroundColor: black,
     color: white
+  },
+  disabled: {
+    backgroundColor: darkGray,
+    color: lightGray,
+    borderWidth: 0
   }
 });
 
 const SingleDeckView = ({ deckName, cardCount, handleCardAdd, handleQuizStart }) => { 
   const disableQuiz = cardCount === 0;
+  const quizBtnStyle = disableQuiz ? styles.disabled : styles.strtBtn;
   return (
     <CenterView>
       <Deck deckName={ deckName } cardCount={ cardCount } />
@@ -36,7 +42,7 @@ const SingleDeckView = ({ deckName, cardCount, handleCardAdd, handleQuizStart })
         </TextButton>
         <TextButton
           onPress={ handleQuizStart }
-          style={styles.strtBtn} 
+          style={ quizBtnStyle } 
           disabled={ disableQuiz }
         >
             Start Quiz 
