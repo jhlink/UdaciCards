@@ -40,3 +40,19 @@ export const clearLocalNotification = async () => {
   }
 };
 
+function createNotification() {
+  return {
+    title: '😭😭😭 Pop Quiz!! 😳😳😳',
+    body: 'Quiz Time! Test thy knowledge!',
+    ios: {
+      sound: true,
+    },
+    android: {
+      sound: true,
+      sticky: false,
+      vibrate: true,
+      priority: 'high'
+    }
+  };
+}
+
