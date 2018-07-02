@@ -53,7 +53,7 @@ class NewDeckView extends Component {
     }
   }
 
-  handleDeckNameChange = (deckName) => {
+  handleDeckNameChange = ( deckName ) => {
     this.setState( { deckName } );
   }
 
