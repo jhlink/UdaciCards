@@ -25,6 +25,7 @@ class SingleDeckViewLogic extends Component {
 
   render() {
     const { cardCount, deckName } = this.props.deck;
+    console.log(this.props);
 
     return (
       <SingleDeckView 
@@ -39,13 +40,9 @@ class SingleDeckViewLogic extends Component {
 
 function mapStateToProps ( state, ownProps ) {
   const { decks } = state.deckReducer;
-  const { id } = ownProps.navigation.state.params.deck;
-  
-  if ( decks === undefined) {
-    return { };
-  }
+  const { deck } = ownProps.navigation.state.params;
 
-  const filteredDeck = decks.filter( (deck) => deck.id === id)[0];
+  const filteredDeck = decks.filter( (testDeck) => testDeck.id === deck.id)[0];
   return { deck: filteredDeck };
 }
 

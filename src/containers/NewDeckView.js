@@ -34,7 +34,7 @@ class NewDeckView extends Component {
     const newDeck = {
       cardCount: 0,
       id: uuidv4(),
-      ...this.state
+      deckName,
     };
 
     this.props.addDeck(newDeck);
@@ -45,7 +45,7 @@ class NewDeckView extends Component {
 
     if (deck !== undefined && deck.deckAdded) {
       this.setState = INIT_DECK; 
-
+        
       goToDeck(
         'DeckView',
         { deck }
@@ -54,7 +54,7 @@ class NewDeckView extends Component {
   }
 
   handleDeckNameChange = (deckName) => {
-    this.setState( { deckName });
+    this.setState( { deckName } );
   }
 
   render() {
@@ -74,6 +74,7 @@ class NewDeckView extends Component {
 function mapStateToProps ( state ) {
   const { deck } = state.deckReducer;
 
+  console.log(deck);
   return {
     deck
   };

@@ -17,12 +17,16 @@ function deckReducer (state = {}, action) {
     }
 
     case ADD_DECK: {
+      const newDeck = { 
+        ...deck,
+        deckAdded: true
+      };
+      const newDecks = [ ...state.decks, newDeck ];
+
       return { 
         ...state,
-        deck: { 
-          ...deck,
-          deckAdded: true
-        }
+        decks: newDecks,
+        deck: newDeck,
       };
     }
 
