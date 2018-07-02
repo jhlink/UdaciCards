@@ -56,3 +56,34 @@ function createNotification() {
   };
 }
 
+export const setLocalNotification = async () => {
+  try {
+    const notificationMetaData = await AsyncStorage.getItem(NOTIFICATION_KEY)
+      .then( JSON.parse );
+
+    if (notificationMetaData  === null) {
+      await Permissions.askAsync(Permissions.NOTIFICATIONS)
+        .then( async ({ status }) => {
+          if (status === 'granted') {
+            await Notifications.cancelAllScheduledNotificationsAsync();
+
+            let today = new Date();
+            today.setMinutes(today.getMinutes() + 1);
+
+            await Notifications.scheduleLocalNotificationAsync(
+              createNotification(),
+              {
+                time: today,
+                repeat: 'day',
+              }
+            );
+
+            await AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true));
+          }
+        });
+    }
+  } catch (error) {
+    console.log('Error setLocalNotification: ', error);
+  }
+};
+
