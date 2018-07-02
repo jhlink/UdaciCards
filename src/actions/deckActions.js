@@ -21,6 +21,14 @@ const addDeck = ( deck ) => {
   };
 };
 
+const incDeckCardCount = ( deckId, deckScore ) => {
+  return {
+    type: INC_DECK_CARD_COUNT,
+    deckId,
+    deckScore,
+  };
+};
+
 const removeDeck = ( deckId ) => {
   return {
     type: REMOVE_DECK,
