@@ -25,3 +25,9 @@ const clearQuizCount = ( ) => {
   };
 };
 
+// Thunks
+export const fetchQuizCount = () => dispatch => {
+  return QuizAPI.getCount()
+    .then( ( count ) => dispatch(getQuizCount( count )));
+};
+

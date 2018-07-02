@@ -19,7 +19,7 @@ export const clearQuizCount = async () => {
   }
 };
 
-export const getQuizCount = async () => {
+export const getCount = async () => {
   try {
     const quizCount = await AsyncStorage.getItem(QUIZ_COUNT_KEY);
     const parsedResult = JSON.parse(quizCount); 
