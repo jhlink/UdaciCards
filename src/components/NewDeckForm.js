@@ -50,7 +50,7 @@ const NewDeckForm = ( props ) => {
         onPress={ handleSubmit }
         style={styles.strtBtn} 
       >
-            Submit 
+      Create Deck
       </TextButton>
     </CenterView>
   );
