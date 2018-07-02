@@ -25,9 +25,7 @@ class QuizViewLogic extends Component {
     const { questions } = this.props;
     const { currentQuestion, completedQuiz } = this.state;
     if ( !this.isEmpty(questions) && !completedQuiz && this.isEmpty(currentQuestion) ) {
-      this.setState({
-        currentQuestion: this.handleNextQuestion() 
-      });
+      this.handleNextQuestion(); 
     }
   }
   
@@ -61,29 +59,26 @@ class QuizViewLogic extends Component {
     console.log('answered', updatedAnsweredQuestions);
     this.setState({
       completedQuiz: remainingQuestions.length === 0,
-      answeredQuestions: updatedAnsweredQuestions 
+      answeredQuestions: updatedAnsweredQuestions,
+      currentQuestion: nextQuestion
     });
-
-    return nextQuestion;
   }
 
   handleCorrectAnswer = () => {
     const { score } = this.state;
-    const nextQuestion = this.handleNextQuestion();
+    this.handleNextQuestion();
     const newScore = score + 1;
     this.setState({ 
       score: newScore,
-      currentQuestion: nextQuestion
     });
   }
 
   handleIncorrectAnswer = () => {
     const { score } = this.state;
-    const nextQuestion = this.handleNextQuestion();
+    this.handleNextQuestion();
     const newScore = score > 0 ? score - 1 : 0;
     this.setState({ 
       score: newScore,
-      currentQuestion: nextQuestion
     });
   }
 
@@ -106,6 +101,16 @@ class QuizViewLogic extends Component {
     }
     return Object.keys(object).length === 0 && object.constructor === Object;
   }
+
+  resetQuiz = () => {
+    this.setState({
+      completedQuiz: false,
+      answeredQuestions: [],
+      score: 0,
+      isQuestion: true,
+    });
+    console.log('reset');
+  }
     
   render() {
     const { completedQuiz, score, isQuestion, currentQuestion, answeredQuestions } = this.state;
@@ -116,6 +121,7 @@ class QuizViewLogic extends Component {
       return ( 
         <ScoreView 
           handleDeckViewNav={ goBack }
+          handleQuizRestart={ this.resetQuiz }
         />
       );
     }
