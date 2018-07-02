@@ -54,5 +54,5 @@ export const purgeDeck = ( deckId ) => dispatch => {
 
 export const incrementDeckCardCount = ( deckId ) => dispatch => {
   return DeckAPI.incrementCardCount( deckId )
-    .then( () => dispatch(incDeckCardCount(deckId)));
-}
+    .then( (deckScore) => dispatch(incDeckCardCount(deckId, deckScore)));
+};

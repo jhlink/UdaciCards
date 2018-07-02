@@ -35,12 +35,12 @@ export const addDeck = async ( deckId, deckJSONData ) => {
 
 export const incrementCardCount = async ( deckId ) => {
   const deckAsyncStorageKey = PARTIAL_DECK_KEY + deckId;
-  //const serializedData = JSON.stringify( deckJSONData );
   try {
     const result = await AsyncStorage.getItem(deckAsyncStorageKey);
     const parsedResult = JSON.parse(result);
-    parsedResult.cardCount++;
+    const newDeckCardCout = parsedResult.cardCount++;
     addDeck(deckId, parsedResult);
+    return newDeckCardCout;
   } catch (err) {
     console.error('addDeck storage failure');
   }
