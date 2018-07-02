@@ -14,7 +14,10 @@ class QuizViewLogic extends Component {
   }
 
   componentDidMount() {
+    const { id } = this.props.navigation.state.params;
     const { fetchQuestions } = this.props;
+
+    this.setState({ deckId: id });
     fetchQuestions();
   }
 
@@ -29,31 +32,23 @@ class QuizViewLogic extends Component {
   }
   
   getRandomInt = ( max ) => {
-    return Math.floor(Math.random() * (max + 1));
+    return Math.floor(Math.random() * max);
   }
 
-
   filterList = ( targetList, filterCriteriaList ) => {
-    return targetList.filter(
-      function(e) {
-        return this.indexOf(e) < 0;
-      },
-      filterCriteriaList 
-    );
+    return targetList.filter( (e) => !filterCriteriaList.includes(e.id)); 
   }
 
   handleNextQuestion = ( ) => {
     const { questions } = this.props;
     const { answeredQuestions, currentQuestion } = this.state;
 
-    if ( !(this.isEmpty(currentQuestion)) ) {
-      this.setState({
-        answeredQuestions: [ ...answeredQuestions, currentQuestion.id] 
-      });
-    }
+    const updatedAnsweredQuestions = !(this.isEmpty(currentQuestion))
+      ?  [ ...answeredQuestions, currentQuestion.id] 
+      : answeredQuestions;
 
-    const remainingQuestions = answeredQuestions.length !== 0  
-      ? this.filterList(questions, answeredQuestions)  
+    const remainingQuestions = updatedAnsweredQuestions.length !== 0  
+      ? this.filterList(questions, updatedAnsweredQuestions)  
       : questions;
     
     const randomQuestionIndex = this.getRandomInt( remainingQuestions.length );
@@ -62,11 +57,12 @@ class QuizViewLogic extends Component {
       ? remainingQuestions[ randomQuestionIndex ] 
       : { };
 
-    if ( this.isEmpty(nextQuestion) ) {
-      this.setState({
-        completedQuiz: true
-      });
-    }
+    console.log('remaining', remainingQuestions);
+    console.log('answered', updatedAnsweredQuestions);
+    this.setState({
+      completedQuiz: remainingQuestions.length === 0,
+      answeredQuestions: updatedAnsweredQuestions 
+    });
 
     return nextQuestion;
   }
@@ -115,9 +111,8 @@ class QuizViewLogic extends Component {
     const { completedQuiz, score, isQuestion, currentQuestion, answeredQuestions } = this.state;
     const { questions } = this.props;
 
-    const hasAnsweredAllQuestions = this.isEmpty( currentQuestion ) && completedQuiz;
-
-    if ( hasAnsweredAllQuestions ) {
+    console.log('completed', completedQuiz);
+    if ( completedQuiz ) {
       return ( 
         <ScoreView 
 
@@ -149,9 +144,16 @@ function mapDispatchToProps ( dispatch ) {
   };
 }
 
-function mapStateToProps( state ) {
+function mapStateToProps( state, { navigation } ) {
   const { questions } = state.questionReducer;
-  return { questions };
+  const { id } = navigation.state.params; 
+  
+  if ( questions === undefined) {
+    return { };
+  }
+
+  const deckQuestions = questions.filter( (question) => question.deckId === id);
+  return { questions: deckQuestions };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)( QuizViewLogic );
