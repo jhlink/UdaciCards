@@ -38,7 +38,7 @@ export const incrementCardCount = async ( deckId ) => {
   try {
     const result = await AsyncStorage.getItem(deckAsyncStorageKey);
     const parsedResult = JSON.parse(result);
-    const newDeckCardCout = parsedResult.cardCount++;
+    const newDeckCardCout = ++parsedResult.cardCount;
     addDeck(deckId, parsedResult);
     return newDeckCardCout;
   } catch (err) {
