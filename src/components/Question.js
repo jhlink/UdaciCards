@@ -6,8 +6,6 @@ import { red } from '../utils/colors';
 const Question = ({ promptText, questionState, onPress, style = {} }) => {
   const buttonText = questionState ? 'Question' : 'Answer';
 
-  console.log(buttonText);
-
   return (
     <CenterView>
       <QuestionPrompt>
