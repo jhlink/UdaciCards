@@ -31,3 +31,12 @@ export const getQuizCount = async () => {
   }
 };
 
+export const clearLocalNotification = async () => {
+  try {
+    await AsyncStorage.removeItem(NOTIFICATION_KEY)
+      .then( Notifications.cancelAllScheduledNotificationsAsync);
+  } catch (error) {
+    console.log('Error clearLocalNotification: ', error);
+  }
+};
+
