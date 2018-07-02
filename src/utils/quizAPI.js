@@ -11,7 +11,7 @@ export const setQuizCount = async (quizCount) => {
   }
 };
 
-export const clearQuizCount = async () => {
+export const clearCount = async () => {
   try {
     await AsyncStorage.removeItem(QUIZ_COUNT_KEY);
   } catch (error) {

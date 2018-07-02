@@ -31,3 +31,8 @@ export const fetchQuizCount = () => dispatch => {
     .then( ( count ) => dispatch(getQuizCount( count )));
 };
 
+export const purgeQuizCount = ( ) => dispatch => {
+  return QuizAPI.clearCount( )
+    .then( () => dispatch(clearQuizCount()));
+};
+
