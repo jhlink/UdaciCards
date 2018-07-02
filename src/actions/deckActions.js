@@ -4,6 +4,7 @@ import * as DeckAPI from '../utils/deckAPI';
 export const GET_DECKS = 'GET_DECKS';
 export const ADD_DECK = 'ADD_DECK';
 export const REMOVE_DECK = 'REMOVE_DECK';
+export const INC_DECK_CARD_COUNT = 'INC_DECK_CARD_COUNT';
 
 // Action Creators
 const loadDecks = ( decks ) => {
