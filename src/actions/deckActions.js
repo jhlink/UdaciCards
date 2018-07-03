@@ -14,7 +14,8 @@ const loadDecks = ( decks ) => {
   };
 };
 
-const addDeck = ( deck ) => {
+const addDeck = ( deck, cb ) => {
+  cb();
   return {
     type: ADD_DECK,
     deck
@@ -42,9 +43,9 @@ export const getDecks = () => dispatch => {
     .then( (decks) => dispatch(loadDecks(decks)));
 };
 
-export const createDeck = ( deck ) => dispatch => {
+export const createDeck = ( deck, cb ) => dispatch => {
   return DeckAPI.addDeck( deck.id, deck )
-    .then( () => dispatch(addDeck(deck)));
+    .then( () => dispatch(addDeck(deck, cb)));
 };
 
 export const purgeDeck = ( deckId ) => dispatch => {
