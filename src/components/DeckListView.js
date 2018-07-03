@@ -43,9 +43,6 @@ class DeckListView extends Component {
             );
           })
         }
-        <TouchableOpacity onPress={this.handlePress}>
-          <Text>blah</Text>
-        </TouchableOpacity>
       </View>
     ); 
   }
