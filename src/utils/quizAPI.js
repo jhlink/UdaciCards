@@ -13,17 +13,10 @@ const setQuizCount = async (quizCount) => {
 
 export const incrementCount = async ( ) => {
   try {
-    const result = await AsyncStorage.getItem( QUIZ_COUNT_KEY );
-    
-    if (result === null) {
-      await setQuizCount(1);
-      return 1;
-    }
+    const result = await getCount();
+    const newQuizCount = ++result;
 
-    const parsedResult = JSON.parse(result);
-    const newQuizCount = ++parsedResult.cardCount;
-
-    await setQuizCount(parsedResult);
+    await setQuizCount(newQuizCount);
     return newQuizCount;
   } catch (err) {
     console.error('IncrementCount Storage Failure', err);
@@ -41,6 +34,9 @@ export const clearCount = async () => {
 export const getCount = async () => {
   try {
     const quizCount = await AsyncStorage.getItem(QUIZ_COUNT_KEY);
+    if ( quizCount === null ) {
+      return 0;
+    }
     const parsedResult = JSON.parse(quizCount); 
 
     return parsedResult;
