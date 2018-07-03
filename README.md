@@ -1,5 +1,37 @@
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
+------ 
+
+# Student Project Notes
+
+## Platforms Tested 
+
+  - Android Device -- Pixel XL -- Android 8.1.0
+
+## Useful Tools (?) / Problems
+
+  - I'm not sure how reviewers were able to test the notification feature for other students, but I've tried to make it as easy as possible to test. 
+    Within `src/utils/notificationAPI.js` and `src/container/AppLogic.js`, there are comment segments marked `TEST_POINT`. Simply uncommenting / commenting the specified areas there will allow you to quickly test the notification and quiz count features. ;) Hopefully this saves you some time!!!
+  - AsyncStorage problems: Using a physical Android device, I've had incredible reliability issues with AsyncStorage. I'm not sure what results you'll have with an emulator, but here are the strategies I've discovered when trying to jumpstart AsyncStorage to life on a physical Android Device.
+    - #1 - Once starting the project with `yarn install & yarn start` and connecting to a device locally via cable (not on a local network), switch between development and production modes. In production mode, AsyncStorage works perfectly. On development mode, things are much more haphazard.
+    - #2 - Restart the Expo. Close the UdaciCards app and the Expo app. Doing so seems to kill any pending AsyncStorage requests and allow new requests to be received. I've primarily used this method for the majority of my development. 
+
+## Notes
+
+  - Within SingleDeckViewLogic, one might notice the weird hacky conditional statement in the mapStateToProps method. More information can be found within that component file.
+  - React-Navigtion and the '`this.setState` is not a function error'. At some point, I had a very interesting error that originated from the NewDeskViewLogic component. After pressing submit or navigating to a new screen, the NewDeskViewLogic would fail to reset its state or change it via a passed handleTextChange prop. It seems that the error originated from having a `this.setState` call within componentDidUpdate. Very weird. Describing it verbally will be too convoluted, so instead I'll settle for any gems of wisdom. 
+    - Would you be able to share any rules of thumbs for using `this.setState` in `componentDidUpdate`? I'm aware of wrapping a conditional statement around any `this.setState` within the lifecycle method, but in my case, I had a `this.props.navigation.goBack()...` function directly after that function call. If you can provide any additional information about this, I'd greatly appreciate it. :) 
+  - In hindsight, having a Tab Navigator as the root element in a Stack Navigator was a dumb idea. I realized my mistake very far into the project; however, for some reason this works.... ;) 
+  Conceptually, I thought of approaching navigation in the app as a stack, similar to the iOS view controllers stack. However, I think this created more difficulty for myself. Would you be able to point out any other reasons why this is a bad idea or practice or is this a more 'it depends' kind of an answer? xD 
+  - Although deck deletion has been implemented, question deletion has not been tied to the UI even though the actions, api, and reducers for it have been implemented already. Sooo, there might be some questions that might still exist within AsyncStorage after deck deletion. I'd recommend deleting the Expo app's data / cache if one is using a physical device to test the device. 
+  
+
+Finally, thank you so much for all your time!! I gotta say, finishing this program has been such a process, and I'm so glad to have (almost) reached the finish line!!
+
+Can't wait to graduate!! Woo!!
+
+------
+
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
 
 ## Table of Contents
