@@ -2,14 +2,17 @@ import React from 'react';
 import { Text, StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
 import TextButton from './TextButton';
-import { white, black } from '../utils/colors';
+import { white, black, blue } from '../utils/colors';
 
 const ScoreView = ({ score, handleQuizRestart, handleDeckViewNav  }) => {  
   return (
     <CenterView>
-      <Text>
-        Well done! You answered { score } correctly!
+      <Text style={ styles.congrats }>
+        Well done! 
       </Text>
+      <Text style={ [styles.congrats, styles.bling]}>
+        You answered { score } correctly!
+      </Text>      
       <ButtonView>
         <TextButton
           onPress={ handleQuizRestart } >
@@ -26,13 +29,15 @@ const ScoreView = ({ score, handleQuizRestart, handleDeckViewNav  }) => {
 };
 
 const CenterView = styled.View`
+  flex: 1
   align-content: center;
-  justify-content: space-between;
+  justify-content: flex-start;
 `;
 
 const ButtonView = styled.View`
-  paddingTop: 200;
-  justify-content: center;
+  marginTop: 75;
+  flex-direction: row;
+  justify-content: space-evenly;
   align-items: center;
 `;
 
@@ -40,6 +45,15 @@ const styles = StyleSheet.create({
   blkBtn: {
     backgroundColor: black,
     color: white
+  },
+  congrats: {
+    marginTop: 20,
+    fontSize: 32,
+    textAlign: 'center',
+  },
+  bling: {
+    marginTop: 5,
+    color: blue
   }
 });
 

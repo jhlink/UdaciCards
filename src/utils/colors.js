@@ -8,5 +8,5 @@ export const white = '#FFF';
 export const black = '#000';
 export const red = '#D71845';
 export const green = '#00A000';
-export const blue = '#4E4CB8';
+export const blue = '#4E4CCF';
 export const lightPurple = '#7C53C3';
