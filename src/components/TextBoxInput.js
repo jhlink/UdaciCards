@@ -20,7 +20,7 @@ const TextBoxInput = ({ value, placeholderText, onChangeText, style = {} }) => {
 const styles = StyleSheet.create({
   input: {
     textAlign: 'left',
-    fontSize: 14,
+    fontSize: 20,
     width: 250,
     marginTop: 25,
     padding: 5,

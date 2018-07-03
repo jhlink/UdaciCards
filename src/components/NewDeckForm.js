@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
   },
   deckInput: {
     marginTop: 15,
-    fontSize: 16,
     marginBottom: 20,
   }
 });
