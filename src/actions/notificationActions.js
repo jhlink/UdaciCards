@@ -17,3 +17,10 @@ const setNotification = ( ) => {
   };
 };
 
+
+// Thunks
+export const clearNotificationFlag = ( ) => dispatch => {
+  return NotificationAPI.clearLocalNotification()
+    .then( ( ) => dispatch( clearNotification( )));
+};
+
