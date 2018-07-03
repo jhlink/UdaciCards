@@ -24,3 +24,7 @@ export const clearNotificationFlag = ( ) => dispatch => {
     .then( ( ) => dispatch( clearNotification( )));
 };
 
+export const setNotificationFlag = ( ) => dispatch => {
+  return NotificationAPI.setLocalNotification( )
+    .then( ( ) => dispatch(setNotification( )));
+};
