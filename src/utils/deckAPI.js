@@ -13,11 +13,10 @@ export const getAllDecks = async () => {
       return deckValue;
     });
 
-    console.log(formatted);
 
     return formatted;
   } catch (error) {
-    console.log('Error getAllDecks: ', error);
+    console.error('Error getAllDecks: ', error);
   }
 
 };
@@ -29,7 +28,7 @@ export const addDeck = async ( deckId, deckJSONData ) => {
   try {
     const result = await AsyncStorage.setItem(deckAsyncStorageKey, serializedData);
   } catch (err) {
-    console.error('addDeck storage failure');
+    console.error('Error addDeck: ', err);
   }
 };
 
@@ -42,7 +41,7 @@ export const incrementCardCount = async ( deckId ) => {
     addDeck(deckId, parsedResult);
     return newDeckCardCout;
   } catch (err) {
-    console.error('addDeck storage failure');
+    console.error('Error incrementCardCount: ', err);
   }
 };
 
@@ -52,9 +51,7 @@ export const deleteDeck = ( deckId ) => {
   return AsyncStorage.removeItem(deckAsyncStorageKey)
     .then( (err) => {
       if (err) {
-        console.error('deleteDeck storage failure');
-      } else {
-        console.log('success');
+        console.error('Error deleteDeck: ', err);
       }
     });
 };
