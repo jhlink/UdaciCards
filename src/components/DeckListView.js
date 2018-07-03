@@ -1,25 +1,32 @@
 import React from 'react';
-import { TouchableOpacity, View } from 'react-native';
+import { 
+  TouchableOpacity, 
+  View,
+  FlatList
+} from 'react-native';
 import styled from 'styled-components/native';
 import Deck from './Deck';
 
 const DeckListView = ({ decks, handleDeckNav }) => { 
   return (
     <View>
-      { decks !== undefined &&
-          decks.map((deck) => {
-            return (
-              <CenterView key={deck.id}>
-                <TouchableOpacity onPress={ () => handleDeckNav(deck)}>
-                  <Deck 
-                    deckName={ deck.deckName } 
-                    cardCount={ deck.cardCount } 
-                  />
-                </TouchableOpacity>
-              </CenterView>
-            );
-          })
-      }
+      <FlatList
+        data={ decks }
+        keyExtractor={( item ) => item.id}
+        renderItem={ ({ item }) => {
+          return ( 
+            <CenterView >
+              <TouchableOpacity 
+                onPress={ () => handleDeckNav(item)}>
+                <Deck 
+                  deckName={ item.deckName } 
+                  cardCount={ item.cardCount } 
+                />
+              </TouchableOpacity>
+            </CenterView>
+          ); 
+        }}
+      />
     </View>
   ); 
 };
