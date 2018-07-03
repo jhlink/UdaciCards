@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TextInput, StyleSheet } from 'react-native';
+import { TextInput, StyleSheet } from 'react-native';
 import { gray } from '../utils/colors';
 
 const TextBoxInput = ({ value, placeholderText, onChangeText, style = {} }) => {
