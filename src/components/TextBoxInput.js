@@ -9,6 +9,7 @@ const TextBoxInput = ({ value, placeholderText, onChangeText, style = {} }) => {
       onChangeText={ onChangeText }
       editable={ true }
       maxLength={ 70 }
+      multiline={ true }
       placeholder={ placeholderText }
       placeholderColor={ gray }
       value={ value }
