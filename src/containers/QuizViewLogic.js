@@ -131,6 +131,7 @@ class QuizViewLogic extends Component {
     if ( completedQuiz ) {
       return ( 
         <ScoreView 
+          score={ score }
           handleDeckViewNav={ goBack }
           handleQuizRestart={ this.resetQuiz }
         />
