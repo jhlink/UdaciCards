@@ -16,12 +16,6 @@ const MainNavigator =  createStackNavigator({
     screen: SingleDeckViewLogic,
     navigationOptions: ({ navigation }) => ({
       headerTitle: 'DECKS',
-      headerLeft: 
-        <TouchableOpacity 
-          onPress={ () => navigation.goBack(null) }
-        >
-          <Text>DeskList</Text>
-        </TouchableOpacity>        
     })
   }, QuizViewLogic: {
     screen: QuizViewLogic,
