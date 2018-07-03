@@ -41,6 +41,14 @@ export const setLocalNotification = async () => {
             await Notifications.cancelAllScheduledNotificationsAsync();
 
             let today = new Date();
+
+            // For testing purposes, the following three lines may be commented
+            //  such that the notification may be seen. 
+
+            //today.setDate(today.getDate() + 1);
+            //today.setHours(20);
+            //today.setMinutes(0);
+
             today.setMinutes(today.getMinutes() + 1);
 
             await Notifications.scheduleLocalNotificationAsync(
