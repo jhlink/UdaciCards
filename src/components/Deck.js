@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import React from 'react';
 import styled from 'styled-components/native';
 
 const CenterView = styled.View`
@@ -19,18 +18,14 @@ const CardCount = styled.Text`
   fontSize: 18;
 `;
 
-class Deck extends Component { 
-  render() {
-    const { deckName, cardCount } = this.props;
-
-    return (
-      <CenterView>
-        <DeckTitle>{deckName}</DeckTitle>
-        <CardCount>{cardCount} cards</CardCount>
-      </CenterView>
-    ); 
-  }
-}
+const Deck = ({ deckName, cardCount }) => {
+  return (
+    <CenterView>
+      <DeckTitle>{deckName}</DeckTitle>
+      <CardCount>{cardCount} cards</CardCount>
+    </CenterView>
+  ); 
+};
 
 export default Deck;
 
