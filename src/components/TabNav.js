@@ -5,7 +5,6 @@ import { createMaterialTopTabNavigator } from 'react-navigation';
 import NewDeckViewLogic from '../containers/NewDeckViewLogic';
 import DeckListViewLogic from '../containers/DeckListViewLogic';
 import { purple, white } from '../utils/colors';
-import { FontAwesome } from '@expo/vector-icons';
 
 const TabNav = createMaterialTopTabNavigator({
   Decks: {
