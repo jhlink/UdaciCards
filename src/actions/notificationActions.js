@@ -1,4 +1,4 @@
-import * as NotificationAPI from '../utils/NotificationAPI';
+import * as NotificationAPI from '../utils/notificationAPI';
 
 // Actions
 export const CLEAR_NOTIFICATION = 'CLEAR_NOTIFICATION';
