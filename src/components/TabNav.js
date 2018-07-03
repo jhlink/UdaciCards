@@ -3,13 +3,13 @@ import {
 } from 'react-native';
 import { createMaterialTopTabNavigator } from 'react-navigation';
 import NewDeckViewLogic from '../containers/NewDeckViewLogic';
-import DeckListView from './DeckListView';
+import DeckListViewLogic from '../containers/DeckListViewLogic';
 import { purple, white } from '../utils/colors';
 import { FontAwesome } from '@expo/vector-icons';
 
 const TabNav = createMaterialTopTabNavigator({
   Decks: {
-    screen: DeckListView 
+    screen: DeckListViewLogic 
   }, 
   NewDeck: {
     screen: NewDeckViewLogic
