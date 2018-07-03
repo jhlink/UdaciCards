@@ -3,11 +3,23 @@ import {
 } from 'react-native';
 import { QUIZ_COUNT_KEY } from './storageKeys'; 
 
-export const setQuizCount = async (quizCount) => {
+const setQuizCount = async (quizCount) => {
   try {
     await AsyncStorage.setItem(QUIZ_COUNT_KEY, JSON.stringify(quizCount));
   } catch (error) {
     console.log('Error setQuizCount: ', error);
+  }
+};
+
+export const incrementCount = async ( ) => {
+  try {
+    const result = await AsyncStorage.getItem( QUIZ_COUNT_KEY );
+    const parsedResult = JSON.parse(result);
+    const newQuizCount = ++parsedResult.cardCount;
+    setQuizCount(parsedResult);
+    return  newQuizCount;
+  } catch (err) {
+    console.error('addDeck storage failure');
   }
 };
 
