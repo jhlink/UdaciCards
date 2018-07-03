@@ -20,6 +20,7 @@ class NewDeckViewLogic extends Component {
 
   toSingleDeckView = () => {
     const { deckName } = this.state;
+    const { goToDeck } = this.props;
 
     const scrubInputs = deckName.trim();
 
@@ -37,23 +38,10 @@ class NewDeckViewLogic extends Component {
       deckName,
     };
 
-    this.props.addDeck(newDeck);
-  }
-
-  componentDidUpdate( ) {
-    const { deck, goToDeck } = this.props;
-
-    if (deck !== undefined && deck.deckAdded) {
-      this.setState = INIT_DECK; 
-        
-      goToDeck(
-        'DeckView',
-        {
-          deck,
-          handleDeckName: this.handleDeckNameChange
-        }
-      );
-    }
+    this.props.addDeck(newDeck, () => {
+      this.setState(INIT_DECK); 
+      goToDeck( 'DeckView', { deck: newDeck });
+    });
   }
 
   handleDeckNameChange = ( deckName ) => {
@@ -77,7 +65,6 @@ class NewDeckViewLogic extends Component {
 function mapStateToProps ( state ) {
   const { deck } = state.deckReducer;
 
-  console.log(deck);
   return {
     deck
   };
@@ -85,7 +72,7 @@ function mapStateToProps ( state ) {
 
 function mapDispatchToProps ( dispatch, { navigation }) {
   return {
-    addDeck: (deckData) =>  dispatch(createDeck(deckData)),
+    addDeck: (deckData, cb) =>  dispatch(createDeck(deckData, cb)),
     goToDeck: (componentAsString, propsToPass) => {
       navigation.navigate(componentAsString, propsToPass);      
     }
