@@ -13,9 +13,10 @@ const getQuizCount = ( count ) => {
   };
 };
 
-const incrementQuizCount = ( ) => {
+const incrementQuizCount = ( count ) => {
   return {
     type: INCREMENT_QUIZ_COUNT,
+    count
   };
 };
 
