@@ -2,7 +2,7 @@ import {
   Platform
 } from 'react-native';
 import { createMaterialTopTabNavigator } from 'react-navigation';
-import NewDeckView from '../containers/NewDeckView';
+import NewDeckViewLogic from '../containers/NewDeckViewLogic';
 import DeckListView from './DeckListView';
 import { purple, white } from '../utils/colors';
 import { FontAwesome } from '@expo/vector-icons';
@@ -12,7 +12,7 @@ const TabNav = createMaterialTopTabNavigator({
     screen: DeckListView 
   }, 
   NewDeck: {
-    screen: NewDeckView
+    screen: NewDeckViewLogic
   }}, {
   tabBarOptions: {
     activeTintColor: Platform.OS === 'ios' ? purple : white,

@@ -11,7 +11,7 @@ const INIT_DECK = {
   errorMsg: ''
 };
 
-class NewDeckView extends Component { 
+class NewDeckViewLogic extends Component { 
   state = {
     deckName: '',
     deckAdded: false,
@@ -48,7 +48,10 @@ class NewDeckView extends Component {
         
       goToDeck(
         'DeckView',
-        { deck }
+        {
+          deck,
+          handleDeckName: this.handleDeckNameChange
+        }
       );
     }
   }
@@ -89,5 +92,5 @@ function mapDispatchToProps ( dispatch, { navigation }) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewDeckView);
+export default connect(mapStateToProps, mapDispatchToProps)(NewDeckViewLogic);
 
