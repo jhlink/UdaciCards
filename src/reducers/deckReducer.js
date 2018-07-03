@@ -50,9 +50,10 @@ function deckReducer (state = {}, action) {
     }
 
     case REMOVE_DECK: {
+      const filteredDeck = state.decks.filter( (deck) => deck.id !== deckId);
       return { 
         ...state,
-        deckId 
+        decks: filteredDeck 
       };
     }
 
