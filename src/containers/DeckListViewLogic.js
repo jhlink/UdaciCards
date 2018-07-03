@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import DeckListView from '../components/DeckListView';
-import { getDecks } from '../actions';
+import { getDecks, purgeDeck } from '../actions';
 
 class DeckListViewLogic extends Component { 
   state = {
@@ -20,6 +20,10 @@ class DeckListViewLogic extends Component {
     this.props.goToDeck( 'DeckView', { deck });
   }
 
+  handleDeckDelete = ( deckId ) => {
+    this.props.deleteDeck( deckId );  
+  }
+
   render() {
     const { decks } = this.props;
 
@@ -27,6 +31,7 @@ class DeckListViewLogic extends Component {
       <DeckListView
         decks={ decks }
         handleDeckNav={ this.handleDeckNavigation }
+        handleDeckDelete={ this.handleDeckDelete }
       />
     ); 
   }
@@ -34,6 +39,7 @@ class DeckListViewLogic extends Component {
 
 function mapDispatchToProps ( dispatch, { navigation } ) {
   return { 
+    deleteDeck: ( deckId ) => dispatch(purgeDeck( deckId )),
     fetchDecks: () => dispatch(getDecks()),
     goToDeck: ( componentKey, propsToPass) => navigation.navigate( componentKey, propsToPass ), 
   };

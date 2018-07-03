@@ -33,7 +33,7 @@ const DeckListView = ({ decks, handleDeckNav, handleDeckDelete }) => {
                 name="trash"
                 size={50}
                 style={ styles.icon }
-                onPress={ () => console.log('Yay') }
+                onPress={ () => handleDeckDelete(item.id) }
               />
             </View>
           ); 
