@@ -14,7 +14,7 @@ const TextButton = ({ disabled, children, onPress, style = {} }) => {
 const styles = StyleSheet.create({
   btn: {
     textAlign: 'center',
-    fontSize: 16,
+    fontSize: 24,
     margin: 5,
     width: 150,
     padding: 10,
