@@ -7,7 +7,7 @@ export const SET_NOTIFICATION = 'SET_NOTIFICATION';
 // Action Creators
 const clearNotification = ( ) => {
   return {
-    type:CLEAR_NOTIFICATION 
+    type: CLEAR_NOTIFICATION 
   };
 };
 
@@ -26,5 +26,5 @@ export const clearNotificationFlag = ( ) => dispatch => {
 
 export const setNotificationFlag = ( ) => dispatch => {
   return NotificationAPI.setLocalNotification( )
-    .then( ( ) => dispatch(setNotification( )));
+    .then( ( ) => dispatch( setNotification( )));
 };
