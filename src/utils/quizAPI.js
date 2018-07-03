@@ -14,12 +14,19 @@ const setQuizCount = async (quizCount) => {
 export const incrementCount = async ( ) => {
   try {
     const result = await AsyncStorage.getItem( QUIZ_COUNT_KEY );
+    
+    if (result === null) {
+      await setQuizCount(1);
+      return 1;
+    }
+
     const parsedResult = JSON.parse(result);
     const newQuizCount = ++parsedResult.cardCount;
-    setQuizCount(parsedResult);
-    return  newQuizCount;
+
+    await setQuizCount(parsedResult);
+    return newQuizCount;
   } catch (err) {
-    console.error('addDeck storage failure');
+    console.error('IncrementCount Storage Failure', err);
   }
 };
 
