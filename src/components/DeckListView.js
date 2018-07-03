@@ -2,10 +2,12 @@ import React from 'react';
 import { 
   TouchableOpacity, 
   View,
-  FlatList
+  FlatList,
+  StyleSheet
 } from 'react-native';
 import styled from 'styled-components/native';
 import Deck from './Deck';
+import { gray } from '../utils/colors';
 
 const DeckListView = ({ decks, handleDeckNav }) => { 
   return (
@@ -15,15 +17,14 @@ const DeckListView = ({ decks, handleDeckNav }) => {
         keyExtractor={( item ) => item.id}
         renderItem={ ({ item }) => {
           return ( 
-            <CenterView >
-              <TouchableOpacity 
-                onPress={ () => handleDeckNav(item)}>
-                <Deck 
-                  deckName={ item.deckName } 
-                  cardCount={ item.cardCount } 
-                />
-              </TouchableOpacity>
-            </CenterView>
+            <TouchableOpacity 
+              style={ styles.item }
+              onPress={ () => handleDeckNav(item)}>
+              <Deck 
+                deckName={ item.deckName } 
+                cardCount={ item.cardCount } 
+              />
+            </TouchableOpacity>
           ); 
         }}
       />
@@ -31,12 +32,16 @@ const DeckListView = ({ decks, handleDeckNav }) => {
   ); 
 };
 
-const CenterView = styled.View`
-  justify-content: center;
-  borderBottomWidth: 1px;
-  borderBottomColor: gray;
-  borderStyle: solid;
-`;
+const styles = StyleSheet.create({
+  item: {
+    paddingTop: 10,
+    paddingBottom: 10,
+    justifyContent: 'center',
+    borderStyle: 'solid',
+    borderBottomWidth: 1,
+    borderBottomColor: gray 
+  }
+});
 
 export default DeckListView;
 
