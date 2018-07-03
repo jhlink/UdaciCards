@@ -36,7 +36,7 @@ export const purgeQuizCount = ( ) => dispatch => {
     .then( () => dispatch(clearQuizCount()));
 };
 
-export const incQuizCount = ( deckId ) => dispatch => {
-  return QuizAPI.incrementCardCount( deckId )
-    .then( (deckScore) => dispatch(incDeckCardCount(deckId, deckScore)));
+export const incQuizCount = ( ) => dispatch => {
+  return QuizAPI.incrementCount( )
+    .then( ( quizCount ) => dispatch(incrementQuizCount( quizCount )));
 };
