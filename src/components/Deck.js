@@ -18,11 +18,11 @@ const CardCount = styled.Text`
   fontSize: 22;
 `;
 
-const Deck = ({ deckName, cardCount }) => {
+const Deck = ({ deckName, cardCount, styles = {} }) => {
   return (
     <CenterView>
-      <DeckTitle>{deckName}</DeckTitle>
-      <CardCount>{cardCount} cards</CardCount>
+      <DeckTitle style={ styles }>{deckName}</DeckTitle>
+      <CardCount style={ styles }>{cardCount} cards</CardCount>
     </CenterView>
   ); 
 };
