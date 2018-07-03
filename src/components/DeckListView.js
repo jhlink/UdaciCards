@@ -1,14 +1,7 @@
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import styled from 'styled-components/native';
 import Deck from './Deck';
-
-const CenterView = styled.View`
-  justify-content: center;
-  borderBottomWidth: 1px;
-  borderBottomColor: gray;
-  borderStyle: solid;
-`;
 
 const DeckListView = ({ decks, handleDeckNav }) => { 
   return (
@@ -30,6 +23,13 @@ const DeckListView = ({ decks, handleDeckNav }) => {
     </View>
   ); 
 };
+
+const CenterView = styled.View`
+  justify-content: center;
+  borderBottomWidth: 1px;
+  borderBottomColor: gray;
+  borderStyle: solid;
+`;
 
 export default DeckListView;
 
