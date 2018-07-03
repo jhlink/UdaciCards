@@ -43,6 +43,21 @@ function mapStateToProps ( state, ownProps ) {
   const { deck } = ownProps.navigation.state.params;
 
   const filteredDeck = decks.filter( (testDeck) => testDeck.id === deck.id)[0];
+
+
+  //  Hack: For some reason, this.props.deck in the SingleDeckViewLogic component
+  //    is undefined when navigating from the NewDeckViewLogic component. 
+  //    This is weird because of the following:
+  //  1) I ensure that I always get the deckId from the navigation.state.params 
+  //    regardless of what component renders this component. 
+  //  2) 'decks' property that I'm receiving from the deckReducer should already
+  //    have the desired / target deck regardless of what component calls it. 
+  //    
+  //    As a result, I've made this hack here that returns the required properties
+  //    that this component requires to render the SingleDeckView. 
+  if (filteredDeck === undefined) {
+    return { deck: { cardCount : 0, deckName: '' }}; 
+  }
   return { deck: filteredDeck };
 }
 
