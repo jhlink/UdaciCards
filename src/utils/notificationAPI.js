@@ -42,6 +42,7 @@ export const setLocalNotification = async () => {
 
             let today = new Date();
 
+            //  TEST_POINT
             // For testing purposes, the following three lines may be commented
             //  such that the notification may be seen. 
 
