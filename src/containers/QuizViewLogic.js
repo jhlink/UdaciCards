@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import QuizView from '../components/QuizView';
 import ScoreView from '../components/ScoreView';
-import { getQuestions } from '../actions';
+import { getQuestions, incQuizCount } from '../actions';
 
 class QuizViewLogic extends Component { 
   state = {
@@ -10,7 +10,8 @@ class QuizViewLogic extends Component {
     score: 0,
     isQuestion: true,
     currentQuestion: {},
-    completedQuiz: false
+    completedQuiz: false,
+    incrementedQuizCount: false,
   }
 
   componentDidMount() {
@@ -22,10 +23,18 @@ class QuizViewLogic extends Component {
   }
 
   componentDidUpdate() {
-    const { questions } = this.props;
-    const { currentQuestion, completedQuiz } = this.state;
+    const { questions, addOneToQuizCount, disableNotification } = this.props;
+    const { currentQuestion, completedQuiz, incrementedQuizCount } = this.state;
     if ( !this.isEmpty(questions) && !completedQuiz && this.isEmpty(currentQuestion) ) {
       this.handleNextQuestion(); 
+    }
+
+    if ( completedQuiz && !incrementedQuizCount ) {
+      addOneToQuizCount();
+      //disableNotification();
+      this.setState({
+        incrementedQuizCount: true
+      });
     }
   }
   
@@ -62,6 +71,7 @@ class QuizViewLogic extends Component {
       answeredQuestions: updatedAnsweredQuestions,
       currentQuestion: nextQuestion,
       isQuestion: true,
+      incrementedQuizCount: false
     });
   }
 
@@ -148,7 +158,8 @@ class QuizViewLogic extends Component {
 function mapDispatchToProps ( dispatch, { navigation } ) {
   return { 
     fetchQuestions: () => dispatch(getQuestions()),
-    goBack: () => navigation.goBack(), 
+    goBack: () => navigation.goBack(),
+    addOneToQuizCount: () => dispatch(incQuizCount())
   };
 }
 
