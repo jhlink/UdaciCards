@@ -8,14 +8,14 @@ import { white, green, red } from '../utils/colors';
 const QuizView = ({ quizProgress, promptText, questionState, handleCardFlip, handleCorrectBtn, handleIncorrectBtn }) => {  
   return (
     <CenterView>
+      <Text style={ styles.progress }>
+        { quizProgress }
+      </Text>
       <Question 
         onPress={ handleCardFlip }
         promptText={ promptText } 
         questionState={ questionState }
       />
-      <Text>
-        { quizProgress }
-      </Text>
       <ButtonView>
         <TextButton
           onPress={ handleCorrectBtn }
@@ -33,13 +33,15 @@ const QuizView = ({ quizProgress, promptText, questionState, handleCardFlip, han
 };
 
 const CenterView = styled.View`
+  flex: 1;
   align-content: center;
-  justify-content: space-between;
+  justify-content: flex-start;
 `;
 
 const ButtonView = styled.View`
-  paddingTop: 200;
-  justify-content: center;
+  marginTop: 75;
+  flex-direction: row;
+  justify-content: space-evenly;
   align-items: center;
 `;
 
@@ -47,12 +49,21 @@ const styles = StyleSheet.create({
   corBtn: {
     backgroundColor: green,
     color: white,
-    borderWidth: 0
+    borderWidth: 0,
+    fontSize: 24,
   },
   incorBtn: {
     backgroundColor: red,
     color: white,
-    borderWidth: 0
+    borderWidth: 0,
+    fontSize: 24,
+  }, 
+  progress: {
+    fontSize: 24,
+    marginLeft: 25,
+    marginTop: 20,
+    textAlign: 'left',
+    alignSelf: 'flex-start'
   }
 });
 

@@ -32,8 +32,9 @@ const QuestionPrompt = styled.Text`
 const styles = StyleSheet.create({
   btn: {
     textAlign: 'center',
-    fontSize: 18,
+    fontSize: 24,
     margin: 5,
+    marginTop: 15,
     width: 150,
     padding: 10,
     borderRadius: 8,
