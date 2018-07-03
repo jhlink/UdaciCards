@@ -15,7 +15,7 @@ const DeckTitle = styled.Text`
 const CardCount = styled.Text`
   text-align: center;
   color: gray;
-  fontSize: 18;
+  fontSize: 22;
 `;
 
 const Deck = ({ deckName, cardCount }) => {
