@@ -6,7 +6,6 @@ import {
   StyleSheet,
 
 } from 'react-native';
-import styled from 'styled-components/native';
 import Deck from './Deck';
 import { gray } from '../utils/colors';
 import Icon from 'react-native-vector-icons/FontAwesome';
