@@ -1,7 +1,5 @@
-import React from 'react';
-import { HeaderBackButton, createStackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 import TabNav from './TabNav';
-import { Text, TouchableOpacity } from 'react-native';
 import SingleDeckViewLogic from '../containers/SingleDeckViewLogic';
 import NewQuestionViewLogic from '../containers/NewQuestionViewLogic';
 import QuizViewLogic from '../containers/QuizViewLogic';
@@ -14,18 +12,18 @@ const MainNavigator =  createStackNavigator({
     })
   }, DeckView: {
     screen: SingleDeckViewLogic,
-    navigationOptions: ({ navigation }) => ({
+    navigationOptions: () => ({
       headerTitle: 'DECKS',
     })
   }, QuizViewLogic: {
     screen: QuizViewLogic,
     navigationOptions: () => ({
-      headerTitle: 'Quiz Time!' 
+      headerTitle: 'QUIZ TIME!' 
     })
   }, NewQuestionViewLogic: {
     screen: NewQuestionViewLogic,
     navigationOptions: () => ({
-      headerTitle: 'New Question' 
+      headerTitle: 'NEW QUESTION' 
     })
   }}, {
   navigationOptions: {
